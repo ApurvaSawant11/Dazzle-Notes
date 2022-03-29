@@ -1,0 +1,39 @@
+.landing__image{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 100% 0;
+}
+
+.landing__container {
+    height: 90vh;
+    position: relative;
+}
+
+.intro{
+    position: absolute;
+    top: 25%;
+    margin-left: 4rem;
+}
+
+.intro h1:nth-of-type(1){
+    background-color: var(--secondary);
+    width: fit-content;
+}
+
+.intro h1:nth-of-type(2){
+    background-color: white;
+    width: fit-content;
+}
+
+@media screen and (max-width: 1000px) {
+    .intro > p {
+        background-color: white;
+    }
+}
+
+@media screen and (max-width: 720px) {
+    .intro {
+        margin-left: 2rem;
+    }
+}

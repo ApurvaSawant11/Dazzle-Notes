@@ -1,0 +1,13 @@
+header {
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.header-logo{
+    color: var(--light-black);
+}
+
+.hamburger-icon {
+    margin-left: 1.3rem;
+}
