@@ -19,15 +19,15 @@
 #header .pro-sidebar-inner .pro-sidebar-layout .logotext p {
     font-size: 20px;
     padding: 0 20px;
-    color: #000;
+    color: var(--light-black);
     font-weight: bold;
 }
 #header .pro-sidebar-inner .pro-sidebar-layout ul {
     padding: 0 5px;
 }
 #header .pro-sidebar-inner .pro-sidebar-layout ul .pro-inner-item {
-    color: #000;
-    margin: 10px 0px;
+    color: var(--light-black);
+    margin: 10px 0;
     font-weight: bold;
 }
 #header .pro-sidebar-inner .pro-sidebar-layout ul .pro-inner-item .pro-icon-wrapper {
