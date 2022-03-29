@@ -1,23 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useState } from "react";
+import { Routes, Route} from "react-router-dom";
+import { Header,} from "./components";
+import { Landing, Home, Login, Signup, Archive, Trash } from "./pages";
+import { WithSidebar, WithoutSidebar, ProtectedRoute } from "./routes";
 
-function App() {
+
+const App = () => {
+  const [barCollapse, setBarCollapse] = useState(false);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header barCollapse={barCollapse} setBarCollapse={setBarCollapse}/>
+        <Routes>
+          
+          <Route element={ <WithoutSidebar />}>
+            <Route path="/landingpage" element={ <Landing /> } />
+            <Route path="/login" element={ <Login /> } />
+            <Route path="/signup" element={ <Signup /> } />
+          </Route>
+          
+          <Route element={<WithSidebar barCollapse={barCollapse} />}>
+            <Route element={ <ProtectedRoute />}>
+              <Route path="/" element={<Home />} />
+              <Route path="/archive" element={ <Archive /> } />
+              <Route path="/trash" element={ <Trash /> } />
+            </Route>
+          </Route>
+
+       
+       </Routes>
+      
     </div>
   );
 }

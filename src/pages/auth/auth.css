@@ -1,0 +1,68 @@
+.auth-container {
+    background: url("../../assets/landingImage.jpg");
+    background-size: cover;
+    height: 90vh;
+    background-position: 100% 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.login-form,
+.signup-form {
+    width: 25rem;
+    background-color: var(--white-color);
+    border-radius: 8px;
+    position: absolute;
+    margin-left: 15%;
+}
+
+.form-name {
+    flex-wrap: nowrap;
+}
+
+.input {
+    background: transparent;
+}
+
+.form-btn {
+    width: 100%;
+}
+
+.authbox-container {
+    font-size: small;
+    justify-content: space-between;
+    white-space: nowrap;
+    gap: 0.5rem;
+}
+
+.authbox-container label {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.button-anchor {
+    background: var(--primary);
+    color: var(--white-color);
+    display: block;
+}
+
+@media screen and (max-width: 560px) {
+    .login-form, .signup-form{
+        margin: 0;
+    }
+
+    .auth-container {
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .login-form,
+    .signup-form,
+    .forgot-form {
+        width: 20rem;
+        padding: 1rem 2rem;
+    }
+}
