@@ -32,12 +32,12 @@ const TrashCard = ({ note, user }) => {
           <h6 className="card__title title__container pl-1">{title}</h6>
           {show && (
             <span className="icon restore__icon">
-              <RestoreIcon size="22px" onClick={restoreHandler} />
+              <RestoreIcon size="1.5rem" onClick={restoreHandler} />
             </span>
           )}
           {show && (
             <span className="icon trash__icon mr-0p5">
-              <TrashIcon size="14px" onClick={deleteHandler} />
+              <TrashIcon onClick={deleteHandler} />
             </span>
           )}
         </div>

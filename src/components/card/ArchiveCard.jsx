@@ -46,7 +46,7 @@ const ArchiveCard = ({ note, user }) => {
               onClick={() => setDropdown((prev) => !prev)}
               className="mr-0p5 icon more__icon"
             >
-              <MoreIcon size="24px" />
+              <MoreIcon size="1.6rem" />
             </span>
           )}
         </div>

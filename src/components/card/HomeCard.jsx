@@ -48,11 +48,11 @@ const HomeCard = ({ note, user }) => {
             <span className="icon pin__icon">
               {isPinned ? (
                 <PinFillIcon
-                  size="18px"
+                  size="1.2rem"
                   onClick={() => updatePin(user, note)}
                 />
               ) : (
-                <PinIcon size="18px" onClick={() => updatePin(user, note)} />
+                <PinIcon size="1.2rem" onClick={() => updatePin(user, note)} />
               )}
             </span>
           )}
@@ -62,7 +62,7 @@ const HomeCard = ({ note, user }) => {
               onClick={() => setDropdown((prev) => !prev)}
               className="mr-0p5 icon more__icon"
             >
-              <MoreIcon size="24px" />
+              <MoreIcon size="1.6rem" />
             </span>
           )}
         </div>

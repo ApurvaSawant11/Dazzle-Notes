@@ -65,7 +65,7 @@ const NewNoteInput = ({ user }) => {
             />
           </div>
 
-          <PinIcon className="mr-1" size="22px" />
+          <PinIcon className="mr-0p5 icon" size="1.5rem" />
           <span
             className="primary-text note__add mr-1"
             onClick={addNoteHandler}
