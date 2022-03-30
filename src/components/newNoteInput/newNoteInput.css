@@ -1,0 +1,33 @@
+.note__editor{
+    width: 50%;
+    margin: 2rem auto 2rem;
+}
+
+.note__add {
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.note__close {
+    color: var(--danger);
+    font-size: 1.1rem;
+    z-index: 2;
+}
+
+.note__pin {
+    cursor: pointer;
+}
+
+.title__container {
+    width: 100%;
+}
+
+.note__title {
+    background: transparent;
+    border: unset;
+    outline: unset;
+    padding: 12px 15px;
+    width: 100%;
+    font-size: medium;
+    font-weight: bold;
+}

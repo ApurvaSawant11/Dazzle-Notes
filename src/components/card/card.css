@@ -1,0 +1,64 @@
+.card__title {
+    margin: 10px 0;
+}
+
+.card__ellipsis {
+    padding-bottom: 1px;
+}
+
+.note__card {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    width: 50%;
+    position: relative;
+}
+
+.note__card > .quill > .ql-container.ql-snow {
+    border: 0;
+}
+
+.dropdown__container {
+    position: absolute;
+    right: -1rem;
+    top: 2.2rem;
+    background: var(--white-color);
+    list-style: none;
+    box-shadow: 0px 0px 2px 1px var(--border-color);
+    border-radius: 4px;
+    padding: 4px;
+    z-index: 10
+}
+
+.dropdown__container li {
+    padding: 1px 0.8rem;
+    margin: 2px;
+    cursor: pointer;
+}
+
+.dropdown__container li:hover {
+    background-color: var(--light-gray);
+}
+
+/* || ArchiveCard HomeCard */
+
+.pin__icon {
+    padding: 5px 5px 0;
+}
+
+.more__icon {
+    padding: 3px 5px 0;
+}
+
+/* || TrashCard */
+
+.restore__icon {
+    padding: 3px 5px 0;
+}
+
+.trash__icon {
+    padding: 3px 8px;
+}
+
+.pin__icon:hover, .more__icon:hover, .restore__icon:hover, .trash__icon:hover {
+    background-color: var(--light-gray);
+}
