@@ -54,8 +54,6 @@ const NewNoteInput = ({ user }) => {
           <div
             className="title__container"
             onClick={() => {
-              setNote(initialNoteState);
-              setValue("");
               setShowEditor(true);
             }}
           >
@@ -93,7 +91,14 @@ const NewNoteInput = ({ user }) => {
                 ADD
               </span>
               <span className="editor__close__icon">
-                <CloseIcon size="1.5rem" onClick={() => setShowEditor(false)} />
+                <CloseIcon
+                  size="1.5rem"
+                  onClick={() => {
+                    setNote(initialNoteState);
+                    setValue("");
+                    setShowEditor(false);
+                  }}
+                />
               </span>
               <span
                 onClick={() => setDropdown((prev) => !prev)}
