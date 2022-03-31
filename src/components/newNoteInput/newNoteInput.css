@@ -1,0 +1,48 @@
+.note__editor{
+    width: 50%;
+    margin: 2rem auto 2rem;
+}
+
+.note__add {
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.note__close {
+    color: var(--danger);
+    font-size: 1.1rem;
+    z-index: 2;
+}
+
+.note__pin {
+    cursor: pointer;
+}
+
+.title__container {
+    width: 100%;
+}
+
+.note__title {
+    background: transparent;
+    border: unset;
+    outline: unset;
+    padding: 0.8rem 1rem;
+    width: 100%;
+    font-size: medium;
+    font-weight: bold;
+}
+
+.note__header {
+    position: relative;
+}
+
+.editor__close__icon {
+    position: absolute;
+    right: -0.8rem;
+    color: var(--danger);
+    top: -0.8rem;
+}
+
+.editor__close__icon > svg {
+    background-color: var(--white-color);
+}

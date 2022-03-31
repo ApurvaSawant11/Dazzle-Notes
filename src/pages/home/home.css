@@ -2,6 +2,11 @@
     width: 100%;
 }
 
+.notes__container {
+    width: 100%;
+    justify-content: flex-start;
+}
+
 .note__editor{
     width: 50%;
     margin: 2rem auto 2rem;
@@ -16,36 +21,6 @@
     border-bottom: 0;
     border-radius: 8px 8px 0 0;
 }
-
-.note__add {
-    text-transform: uppercase;
-    cursor: pointer;
-}
-
-.note__close {
-    color: red;
-    font-size: 1.1rem;
-    z-index: 2;
-}
-
-.note__pin {
-    cursor: pointer;
-}
-
-.note__title {
-    background: transparent;
-    border: unset;
-    outline: unset;
-    padding: 12px 15px;
-    width: 100%;
-    font-size: medium;
-    font-weight: bold;
-}
-
-.title__container {
-    width: 100%;
-}
-
 
 /* || Overriding react-quill properties */
 
