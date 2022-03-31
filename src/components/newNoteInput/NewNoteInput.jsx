@@ -3,7 +3,7 @@ import "./newNoteInput.css";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { quillModules as modules } from "../../utils/quillModules";
-import { PinIcon } from "../../assets";
+import { CloseIcon, PinIcon, PinFillIcon, MoreIcon } from "../../assets";
 import { addToSavedNotes } from "../../services/firebaseServices";
 
 const NewNoteInput = ({ user }) => {
@@ -14,12 +14,13 @@ const NewNoteInput = ({ user }) => {
   const initialNoteState = {
     title: "",
     content: "",
-    noteColor: "FFFFFF",
+    noteColor: "#FFFFFF",
     isPinned: false,
     tags: [],
   };
 
   const [note, setNote] = useState(initialNoteState);
+  const [dropdown, setDropdown] = useState(false);
 
   const updateNoteContent = () => {
     setNote(() => ({ ...note, content: value }));
@@ -50,7 +51,14 @@ const NewNoteInput = ({ user }) => {
             showEditor ? "border-bottom-0" : ""
           }`}
         >
-          <div className="title__container" onClick={() => setShowEditor(true)}>
+          <div
+            className="title__container"
+            onClick={() => {
+              setNote(initialNoteState);
+              setValue("");
+              setShowEditor(true);
+            }}
+          >
             <input
               type="text"
               className="note__title"
@@ -65,18 +73,35 @@ const NewNoteInput = ({ user }) => {
             />
           </div>
 
-          <PinIcon className="mr-0p5 icon" size="1.5rem" />
-          <span
-            className="primary-text note__add mr-1"
-            onClick={addNoteHandler}
-          >
-            ADD
-          </span>
+          {note.isPinned ? (
+            <PinFillIcon
+              size="1.3rem"
+              className="icon mr-1"
+              onClick={() => setNote({ ...note, isPinned: !note.isPinned })}
+            />
+          ) : (
+            <PinIcon
+              size="1.3rem"
+              className="icon mr-1"
+              onClick={() => setNote({ ...note, isPinned: !note.isPinned })}
+            />
+          )}
+
           {showEditor && (
-            <i
-              className="fas fa-times pr-1 note__close"
-              onClick={() => setShowEditor(false)}
-            ></i>
+            <>
+              <span className="primary-text note__add" onClick={addNoteHandler}>
+                ADD
+              </span>
+              <span className="editor__close__icon">
+                <CloseIcon size="1.5rem" onClick={() => setShowEditor(false)} />
+              </span>
+              <span
+                onClick={() => setDropdown((prev) => !prev)}
+                className="mr-0p5 icon more__icon"
+              >
+                <MoreIcon size="1.4rem" />
+              </span>
+            </>
           )}
         </div>
         {showEditor && (

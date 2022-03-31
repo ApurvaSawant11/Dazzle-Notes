@@ -31,3 +31,18 @@
     font-size: medium;
     font-weight: bold;
 }
+
+.note__header {
+    position: relative;
+}
+
+.editor__close__icon {
+    position: absolute;
+    right: -0.8rem;
+    color: var(--danger);
+    top: -0.8rem;
+}
+
+.editor__close__icon > svg {
+    background-color: var(--white-color);
+}

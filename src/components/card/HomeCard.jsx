@@ -2,7 +2,13 @@ import React, { useState } from "react";
 import "./card.css";
 import ReactQuill from "react-quill";
 import { EditModal } from "../editModal/EditModal";
-import { PinFillIcon, PinIcon, MoreIcon } from "../../assets";
+import {
+  PinFillIcon,
+  PinIcon,
+  MoreIcon,
+  PaletteIcon,
+  ArchiveIcon,
+} from "../../assets";
 import {
   addToArchive,
   addToTrash,
@@ -80,6 +86,15 @@ const HomeCard = ({ note, user }) => {
           value={content}
           readOnly={true}
         />
+
+        <div className="action__icons">
+          <span className="ml-1">
+            <PaletteIcon />
+          </span>
+          <span className="ml-1">
+            <ArchiveIcon />
+          </span>
+        </div>
       </div>
       {openModal.state && (
         <EditModal

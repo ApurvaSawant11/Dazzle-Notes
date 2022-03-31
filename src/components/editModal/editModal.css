@@ -1,7 +1,7 @@
 .edit__modal {
     width: 37%;
-    min-width: 400px;
-    max-width: 580px;
+    min-width: 25rem;
+    max-width: 35rem;
     margin-top: 10rem;
     border-radius: 8px;
 }
