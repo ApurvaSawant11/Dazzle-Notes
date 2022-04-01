@@ -43,6 +43,30 @@
     padding: 0.5rem 0;
 }
 
+.card-badges {
+    justify-content: space-between;
+}
+
+.card-tag {
+    background-color: var(--light-gray);
+    border-radius: 8px;
+}
+
+.card-priority {
+    background-color: var(--light-yellow);
+    border-radius: 8px;
+}
+
+.card-footer {
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+
+.card-date {
+    color: var(--dark-gray);
+}
+
 /* || ArchiveCard HomeCard */
 
 .pin__icon {

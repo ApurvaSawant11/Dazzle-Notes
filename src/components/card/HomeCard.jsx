@@ -2,13 +2,8 @@ import React, { useState } from "react";
 import "./card.css";
 import ReactQuill from "react-quill";
 import { EditModal } from "../editModal/EditModal";
-import {
-  PinFillIcon,
-  PinIcon,
-  MoreIcon,
-  PaletteIcon,
-  ArchiveIcon,
-} from "../../assets";
+import { ColorPalette } from "../colorPalette/ColorPalette";
+import { PinFillIcon, PinIcon, MoreIcon, ArchiveIcon } from "../../assets";
 import {
   addToArchive,
   addToTrash,
@@ -17,8 +12,9 @@ import {
 } from "../../services/firebaseServices";
 
 const HomeCard = ({ note, user }) => {
-  const { title, content, noteColor, isPinned } = note;
-
+  const { title, content, noteColor, isPinned, priority, tags, createdAt } =
+    note;
+  const createdDate = createdAt.split(" ")[0];
   const [show, setShow] = useState(false);
   const [dropdown, setDropdown] = useState(false);
   const [openModal, setOpenModal] = useState({ state: false, note: {} });
@@ -87,22 +83,35 @@ const HomeCard = ({ note, user }) => {
           readOnly={true}
         />
 
-        <div className="action__icons">
-          <span className="ml-1">
-            <PaletteIcon />
-          </span>
-          <span className="ml-1">
-            <ArchiveIcon />
-          </span>
+        <div className="card-badges flex-row px-1 pt-0p5 text-xs">
+          <div>
+            {tags &&
+              tags.map((item, index) => (
+                <span className="card-tag px-0p5 mr-0p5" key={index}>
+                  {item}
+                </span>
+              ))}
+          </div>
+          <div className="card-priority px-0p5">{priority}</div>
+        </div>
+
+        <div className="card-footer flex-row p-1 pt-0p5">
+          <span className="text-xs card-date">Created on: {createdDate}</span>
+          <div>
+            <ColorPalette user={user} note={note} />
+            <ArchiveIcon className="ml-1 icon" onClick={archiveHandler} />
+          </div>
         </div>
       </div>
       {openModal.state && (
-        <EditModal
-          openModal={setOpenModal}
-          note={openModal.note}
-          user={user}
-          noteType="savedNotes"
-        />
+        <div className="modal__container flex-column-center">
+          <EditModal
+            openModal={setOpenModal}
+            note={openModal.note}
+            user={user}
+            noteType="savedNotes"
+          />
+        </div>
       )}
     </>
   );

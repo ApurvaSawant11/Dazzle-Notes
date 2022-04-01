@@ -46,3 +46,8 @@
 .editor__close__icon > svg {
     background-color: var(--white-color);
 }
+
+.priority-dropdown {
+    border: unset;
+    outline: none;
+}

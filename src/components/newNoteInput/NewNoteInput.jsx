@@ -2,11 +2,18 @@ import React, { useState, useEffect, useRef } from "react";
 import "./newNoteInput.css";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import { quillModules as modules } from "../../utils/quillModules";
-import { CloseIcon, PinIcon, PinFillIcon, MoreIcon } from "../../assets";
+import { CloseIcon, PinIcon, PinFillIcon, TagIcon } from "../../assets";
 import { addToSavedNotes } from "../../services/firebaseServices";
+import { DropDown } from "../dropDown/DropDown";
+import { getCurrentDate } from "../../utils/getCurrentDate";
+import { ColorPalette } from "../colorPalette/ColorPalette";
+import {
+  EditorToolbar,
+  modules,
+  formats,
+} from "../editorToolbar/EditorToolbar";
 
-const NewNoteInput = ({ user }) => {
+const NewNoteInput = ({ user, tagsList }) => {
   const [value, setValue] = useState("");
   const editorRef = useRef();
   const [showEditor, setShowEditor] = useState(false);
@@ -16,16 +23,16 @@ const NewNoteInput = ({ user }) => {
     content: "",
     noteColor: "#FFFFFF",
     isPinned: false,
+    priority: null,
     tags: [],
+    createdAt: getCurrentDate(),
   };
-
   const [note, setNote] = useState(initialNoteState);
   const [dropdown, setDropdown] = useState(false);
 
   const updateNoteContent = () => {
     setNote(() => ({ ...note, content: value }));
   };
-
   useEffect(() => {
     updateNoteContent();
   }, [value]);
@@ -45,12 +52,8 @@ const NewNoteInput = ({ user }) => {
 
   return (
     <div className="home__container">
-      <div className="note__editor">
-        <div
-          className={`note__header flex-row-center ${
-            showEditor ? "border-bottom-0" : ""
-          }`}
-        >
+      <div className="note__editor" style={{ backgroundColor: note.noteColor }}>
+        <div className="note__header flex-row-center">
           <div
             className="title__container"
             onClick={() => {
@@ -71,23 +74,19 @@ const NewNoteInput = ({ user }) => {
             />
           </div>
 
-          {note.isPinned ? (
-            <PinFillIcon
-              size="1.3rem"
-              className="icon mr-1"
-              onClick={() => setNote({ ...note, isPinned: !note.isPinned })}
-            />
-          ) : (
-            <PinIcon
-              size="1.3rem"
-              className="icon mr-1"
-              onClick={() => setNote({ ...note, isPinned: !note.isPinned })}
-            />
-          )}
+          <span
+            className="icon mr-1"
+            onClick={() => setNote({ ...note, isPinned: !note.isPinned })}
+          >
+            {note.isPinned ? <PinFillIcon /> : <PinIcon />}
+          </span>
 
           {showEditor && (
             <>
-              <span className="primary-text note__add" onClick={addNoteHandler}>
+              <span
+                className="primary-text note__add pr-1"
+                onClick={addNoteHandler}
+              >
                 ADD
               </span>
               <span className="editor__close__icon">
@@ -100,25 +99,52 @@ const NewNoteInput = ({ user }) => {
                   }}
                 />
               </span>
-              <span
-                onClick={() => setDropdown((prev) => !prev)}
-                className="mr-0p5 icon more__icon"
-              >
-                <MoreIcon size="1.4rem" />
-              </span>
             </>
           )}
         </div>
+
         {showEditor && (
-          <ReactQuill
-            className="note__content"
-            placeholder="Add a note..."
-            theme="snow"
-            value={value}
-            onChange={setValue}
-            modules={modules}
-            ref={editorRef}
-          />
+          <span>
+            <ReactQuill
+              theme="snow"
+              value={value}
+              onChange={setValue}
+              placeholder={"Write something awesome..."}
+              modules={modules}
+              formats={formats}
+              ref={editorRef}
+            />
+
+            <span className="editor-footer pr-1 flex-row">
+              <EditorToolbar />
+              <span>
+                <select
+                  className="priority-dropdown mr-1"
+                  onChange={(e) =>
+                    setNote({ ...note, priority: e.target.value })
+                  }
+                >
+                  <option value={null} hidden="">
+                    Priority
+                  </option>
+                  <option value="High">High</option>
+                  <option value="Medium">Medium</option>
+                  <option value="Low">Low</option>
+                </select>
+                <TagIcon onClick={() => setDropdown(true)} className="mr-1" />
+                {dropdown && (
+                  <DropDown
+                    list={tagsList}
+                    type="checkbox"
+                    note={note}
+                    setNote={setNote}
+                    setDropdown={setDropdown}
+                  />
+                )}
+                <ColorPalette user={user} note={note} setNote={setNote} />
+              </span>
+            </span>
+          </span>
         )}
       </div>
     </div>

@@ -19,3 +19,17 @@
 .edit__modal > .quill{
     height: 3in !important;
 }
+
+.priority {
+    background: transparent;
+    width: 8rem;
+    border-radius: 4px;
+    padding: 3px 5px 3px 3px;
+}
+
+.editor-footer {
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+

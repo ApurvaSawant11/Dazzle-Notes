@@ -1,0 +1,26 @@
+.palette {
+    display: inline-block;
+    cursor: pointer;   
+    position: relative;
+}
+  
+.palette-container {
+  justify-content: center;
+  position: absolute;
+  right: 1rem;
+  padding: 5px;
+  z-index: 10;
+  flex-wrap: wrap;
+  width: 20rem;
+  background-color: var(--white-color);
+  border-radius: 8px;
+  box-shadow: 0px 0px 2px 1px var(--border-color);
+}
+  
+.palette-color {
+  border-radius: 50%;
+  border: 1px solid var(--border-color);
+  width: 2rem;
+  height: 2rem;
+  margin: 5px;
+}
