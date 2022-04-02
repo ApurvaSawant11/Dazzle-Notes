@@ -14,7 +14,7 @@ const DataProvider = ({ children }) => {
 
   const [state, dispatch] = useReducer(dataReducer, initialReducerData);
 
-  useEffect(() => {
+  if (user) {
     onSnapshot(
       collection(db, "users", `${user.uid}`, "savedNotes"),
       (snapshot) => {
@@ -52,7 +52,7 @@ const DataProvider = ({ children }) => {
         payload: list[0].tagsList,
       });
     });
-  }, [user]);
+  }
 
   const value = {
     savedNotes: state.savedNotes,
