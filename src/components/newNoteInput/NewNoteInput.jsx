@@ -23,7 +23,7 @@ const NewNoteInput = ({ user, tagsList }) => {
     content: "",
     noteColor: "#FFFFFF",
     isPinned: false,
-    priority: null,
+    priority: { name: "Low", value: "0" },
     tags: [],
     createdAt: getCurrentDate(),
   };
@@ -48,6 +48,19 @@ const NewNoteInput = ({ user, tagsList }) => {
     } else {
       alert("Please add atleast title or note");
     }
+  };
+
+  const priorityHandler = (value) => {
+    let name = "";
+    if (value === "2") {
+      name = "High";
+    } else if (value === "1") {
+      name = "Medium";
+    } else name = "Low";
+    setNote({
+      ...note,
+      priority: { name: name, value: value },
+    });
   };
 
   return (
@@ -120,17 +133,16 @@ const NewNoteInput = ({ user, tagsList }) => {
               <span>
                 <select
                   className="priority-dropdown mr-1"
-                  onChange={(e) =>
-                    setNote({ ...note, priority: e.target.value })
-                  }
+                  onChange={(e) => priorityHandler(e.target.value)}
                 >
                   <option value={null} hidden="">
                     Priority
                   </option>
-                  <option value="High">High</option>
-                  <option value="Medium">Medium</option>
-                  <option value="Low">Low</option>
+                  <option value="0">Low</option>
+                  <option value="1">Medium</option>
+                  <option value="2">High</option>
                 </select>
+
                 <TagIcon onClick={() => setDropdown(true)} className="mr-1" />
                 {dropdown && (
                   <DropDown

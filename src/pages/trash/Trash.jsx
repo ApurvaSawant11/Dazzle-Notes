@@ -1,27 +1,14 @@
-import React, { useState, useEffect } from "react";
-import { db } from "../../config/firebase-config";
-import { collection, onSnapshot } from "firebase/firestore";
-import { useAuth } from "../../context/auth-context";
+import React from "react";
 import { TrashCard } from "../../components";
 import { deleteFromTrash } from "../../services/firebaseServices";
+import { useAuth, useData } from "../../context";
 
 const Trash = () => {
-  const [notes, setNotes] = useState([]);
   const { user } = useAuth();
-
-  useEffect(() => {
-    (async () => {
-      onSnapshot(
-        collection(db, "users", `${user.uid}`, "trashedNotes"),
-        (snapshot) => {
-          setNotes(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-        }
-      );
-    })();
-  }, [user]);
+  const { trashedNotes } = useData();
 
   const emptyTrashHandler = () => {
-    notes.map((note) => {
+    trashedNotes.map((note) => {
       try {
         deleteFromTrash(user, note);
       } catch (error) {
@@ -39,7 +26,7 @@ const Trash = () => {
         </span>
       </i>
       <div className="flex-column-center notes__container mt-2p5">
-        {notes.map((note) => {
+        {trashedNotes.map((note) => {
           return <TrashCard key={note.id} note={note} user={user} />;
         })}
       </div>

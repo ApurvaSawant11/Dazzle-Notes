@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import "./card.css";
 import ReactQuill from "react-quill";
-import { EditModal } from "../editModal/EditModal";
-import { ColorPalette } from "../colorPalette/ColorPalette";
+import { ColorPalette, EditModal } from "../../components";
 import { PinFillIcon, PinIcon, MoreIcon, ArchiveIcon } from "../../assets";
 import {
   addToArchive,
@@ -72,8 +71,6 @@ const HomeCard = ({ note, user }) => {
           <div className="dropdown__container">
             <li onClick={deleteHandler}>Delete note</li>
             <li onClick={editHandler}>Edit note</li>
-            <li>Add tag</li>
-            <li onClick={archiveHandler}>Archive note</li>
           </div>
         )}
 
@@ -92,26 +89,24 @@ const HomeCard = ({ note, user }) => {
                 </span>
               ))}
           </div>
-          <div className="card-priority px-0p5">{priority}</div>
+          <div className="card-priority px-0p5">{priority.name}</div>
         </div>
 
         <div className="card-footer flex-row p-1 pt-0p5">
-          <span className="text-xs card-date">Created on: {createdDate}</span>
+          <span className="text-xs card-date">Created on: {createdAt}</span>
           <div>
-            <ColorPalette user={user} note={note} />
+            <ColorPalette user={user} note={note} requestFrom="card" />
             <ArchiveIcon className="ml-1 icon" onClick={archiveHandler} />
           </div>
         </div>
       </div>
       {openModal.state && (
-        <div className="modal__container flex-column-center">
-          <EditModal
-            openModal={setOpenModal}
-            note={openModal.note}
-            user={user}
-            noteType="savedNotes"
-          />
-        </div>
+        <EditModal
+          openModal={setOpenModal}
+          note={openModal.note}
+          user={user}
+          noteType="savedNotes"
+        />
       )}
     </>
   );

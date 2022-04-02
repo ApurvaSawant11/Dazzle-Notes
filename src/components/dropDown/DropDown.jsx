@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 
-const DropDown = ({ list, setNote, setDropdown }) => {
+const DropDown = ({ list, note, setNote, setDropdown }) => {
   const node = useRef();
+
   const changeHandler = (checked, value) => {
     if (checked) {
-      setNote((prev) => ({ ...prev, tags: [...prev.tags, value] }));
+      if (!note.tags.includes(value))
+        setNote((prev) => ({ ...prev, tags: [...prev.tags, value] }));
     } else {
       setNote((prev) => ({
         ...prev,
@@ -18,7 +20,7 @@ const DropDown = ({ list, setNote, setDropdown }) => {
     if (node.current.contains(e.target)) {
       return;
     }
-    setDropdown("");
+    setDropdown(false);
     showText(false);
   };
 
@@ -41,6 +43,7 @@ const DropDown = ({ list, setNote, setDropdown }) => {
           <input
             type="checkbox"
             value={item}
+            checked={note.tags.includes(item)}
             name="option"
             onChange={(e) => changeHandler(e.target.checked, e.target.value)}
           />{" "}

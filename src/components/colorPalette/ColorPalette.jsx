@@ -14,8 +14,17 @@ const paletteColors = [
   "#aad5cb",
 ];
 
-const ColorPalette = ({ user, note, setNote }) => {
+const ColorPalette = ({ user, note, setNote, requestFrom }) => {
   const [show, setShow] = useState(false);
+
+  const colorChangeHandler = (color) => {
+    if (requestFrom === "card") {
+      updateColor(user, note, color);
+    } else {
+      setShow(!show);
+      setNote({ ...note, noteColor: color });
+    }
+  };
   return (
     <>
       <div className="palette">
@@ -33,11 +42,7 @@ const ColorPalette = ({ user, note, setNote }) => {
                 style={{
                   backgroundColor: color,
                 }}
-                onClick={() => {
-                  updateColor(user, note, color);
-                  setShow(!show);
-                  setNote({ ...note, noteColor: color });
-                }}
+                onClick={() => colorChangeHandler(color)}
               ></div>
             );
           })}

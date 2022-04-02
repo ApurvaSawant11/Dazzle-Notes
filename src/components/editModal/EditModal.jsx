@@ -5,30 +5,20 @@ import "react-quill/dist/quill.snow.css";
 import { updateNote } from "../../services/firebaseServices";
 import { TagIcon } from "../../assets";
 import { ColorPalette } from "../colorPalette/ColorPalette";
-import { db } from "../../config/firebase-config";
-import { collection, onSnapshot } from "firebase/firestore";
 import { DropDown } from "../dropDown/DropDown";
 import {
   EditorToolbar,
   modules,
   formats,
 } from "../editorToolbar/EditorToolbar";
+import { useData } from "../../context";
 
 const EditModal = ({ openModal, note, user, noteType }) => {
   const [value, setValue] = useState(note.content);
   const editorRef = useRef();
   const [updatedNote, setUpdatedNote] = useState(note);
-  const [dropdown, setDropdown] = useState("");
-  const [tagsList, setTagsList] = useState([]);
-
-  useEffect(() => {
-    (async () => {
-      onSnapshot(collection(db, "users", `${user.uid}`, "tags"), (snapshot) => {
-        const list = snapshot.docs.map((doc) => doc.data());
-        setTagsList(list[0].tagsList);
-      });
-    })();
-  }, [user, tagsList]);
+  const [dropdown, setDropdown] = useState(false);
+  const { tagsList } = useData();
 
   const updateNoteContent = () => {
     setUpdatedNote({ ...updatedNote, content: value });
@@ -43,8 +33,20 @@ const EditModal = ({ openModal, note, user, noteType }) => {
     openModal({ state: false });
   };
 
+  const priorityHandler = (value) => {
+    let name = "";
+    if (value === "2") {
+      name = "High";
+    } else if (value === "1") {
+      name = "Medium";
+    } else name = "Low";
+    setUpdatedNote({
+      ...note,
+      priority: { name: name, value: value },
+    });
+  };
   return (
-    <div className="home__container">
+    <div className="modal__container flex-column-center">
       {updatedNote && (
         <div
           className="note__editor"
@@ -105,25 +107,24 @@ const EditModal = ({ openModal, note, user, noteType }) => {
               <span>
                 <select
                   className="priority-dropdown mr-1"
-                  onChange={(e) =>
-                    setUpdatedNote({
-                      ...updatedNote,
-                      priority: e.target.value,
-                    })
-                  }
+                  onChange={(e) => priorityHandler(e.target.value)}
                 >
                   <option value={null} hidden="">
                     Priority
                   </option>
-                  <option value="High">High</option>
-                  <option value="Medium">Medium</option>
-                  <option value="Low">Low</option>
+                  <option value="0">Low</option>
+                  <option value="1">Medium</option>
+                  <option value="2">High</option>
                 </select>
-                <TagIcon onClick={() => setDropdown("tags")} className="mr-1" />
-                {dropdown === "tags" && (
+                <TagIcon
+                  onClick={() => setDropdown(!dropdown)}
+                  className="mr-1"
+                />
+                {dropdown && (
                   <DropDown
                     list={tagsList}
                     type="checkbox"
+                    note={updatedNote}
                     setNote={setUpdatedNote}
                     setDropdown={setDropdown}
                   />
@@ -132,6 +133,7 @@ const EditModal = ({ openModal, note, user, noteType }) => {
                   user={user}
                   note={updatedNote}
                   setNote={setUpdatedNote}
+                  requestFrom="editModal"
                 />
               </span>
             </span>

@@ -4,13 +4,15 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 
-import { AuthProvider } from "./context/auth-context"
+import { AuthProvider, DataProvider } from "./context";
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <AuthProvider>
-        <App />
+        <DataProvider>
+          <App />
+        </DataProvider>
       </AuthProvider>
     </BrowserRouter>
   </React.StrictMode>,
