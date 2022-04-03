@@ -1,28 +1,28 @@
-.note__editor{
-    width: 50%;
+.modal-container .note-editor{
+    width: 40%;
     margin: 2rem auto 2rem;
 }
 
-.note__add {
+.note-add {
     text-transform: uppercase;
     cursor: pointer;
 }
 
-.note__close {
+.note-close {
     color: var(--danger);
     font-size: 1.1rem;
     z-index: 2;
 }
 
-.note__pin {
+.note-pin {
     cursor: pointer;
 }
 
-.title__container {
+.title-container {
     width: 100%;
 }
 
-.note__title {
+.note-title {
     background: transparent;
     border: unset;
     outline: unset;
@@ -32,17 +32,26 @@
     font-weight: bold;
 }
 
-.note__header {
+.note-header {
     position: relative;
 }
 
-.editor__close__icon {
+.editor-close-icon {
     position: absolute;
     right: -0.8rem;
     color: var(--danger);
     top: -0.8rem;
 }
 
-.editor__close__icon > svg {
+.editor-close-icon > svg {
     background-color: var(--white-color);
+}
+
+.priority-dropdown {
+    border: unset;
+    outline: none;
+}
+
+.modal-container .ql-editor {
+    min-height: 10rem;
 }

@@ -1,47 +1,37 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./home.css";
 import { HomeCard, NewNoteInput } from "../../components";
-import { db } from "../../config/firebase-config";
-import { collection, onSnapshot } from "firebase/firestore";
-import { useAuth } from "../../context/auth-context";
+import { useAuth, useData } from "../../context";
+import { filterByTags, sortData } from "../../utils/getFilteredData";
 
 const Home = () => {
-  const [notes, setNotes] = useState([]);
   const { user } = useAuth();
+  const { savedNotes, tagsList, filterTags, sortByPriority, sortByDate } =
+    useData();
 
-  useEffect(() => {
-    (async () => {
-      onSnapshot(
-        collection(db, "users", `${user.uid}`, "savedNotes"),
-        (snapshot) => {
-          setNotes(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-        }
-      );
-    })();
-  }, [user]);
+  const filteredData = filterByTags([...savedNotes], filterTags);
+  const sortedData = sortData([...filteredData], sortByPriority, sortByDate);
 
   return (
-    <div className="home__container">
-      <NewNoteInput user={user} />
+    <div className="home-container">
+      <NewNoteInput user={user} tagsList={tagsList} />
 
       <div className="flex-column-center">
         <h6>Pinned</h6>
-        {notes.map((note) => {
-          if (note.isPinned) {
-            return <HomeCard key={note.id} note={note} user={user} />;
-          } else {
-            return <></>;
-          }
-        })}
+        {sortedData &&
+          sortedData.map((note) => {
+            if (note.isPinned) {
+              return <HomeCard key={note.id} note={note} user={user} />;
+            }
+          })}
 
         <h6>Others</h6>
-        {notes.map((note) => {
-          if (!note.isPinned) {
-            return <HomeCard key={note.id} note={note} user={user} />;
-          } else {
-            return <></>;
-          }
-        })}
+        {sortedData &&
+          sortedData.map((note) => {
+            if (!note.isPinned) {
+              return <HomeCard key={note.id} note={note} user={user} />;
+            }
+          })}
       </div>
     </div>
   );

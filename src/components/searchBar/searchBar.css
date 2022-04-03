@@ -1,0 +1,35 @@
+.search-input {
+    border-radius: 8px;
+}
+
+.search-container {
+    width: 30rem;
+    position: relative;
+}
+
+.search-icon {
+    position: absolute;
+    left: 1.5rem;
+}
+
+.filter-icon {
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+.filter-container {
+    position: absolute;
+    top: 2rem;
+    left: 20rem;
+    background: var(--white-color);
+    min-width: 25rem;
+    box-shadow: 0px 0px 2px 1px var(--border-color);
+    border-radius: 8px;
+    z-index: 2;
+}
+
+.filter-footer {
+    border-top: 1px solid var(--border-color);
+}

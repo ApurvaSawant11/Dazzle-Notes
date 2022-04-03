@@ -1,11 +1,12 @@
 .auth-container {
     background: url("../../assets/landingImage.jpg");
     background-size: cover;
-    height: 90vh;
+    height: 100vh;
     background-position: 100% 0;
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    padding-top: 4.4rem;
 }
 
 .login-form,

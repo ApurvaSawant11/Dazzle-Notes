@@ -2,6 +2,10 @@ header {
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid var(--border-color);
+    position: fixed;
+    width: 100%;
+    background: var(--white-color);
+    z-index: 1010;
 }
 
 .header-logo{

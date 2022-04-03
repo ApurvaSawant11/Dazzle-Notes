@@ -1,25 +1,17 @@
-.home__container{
+.home-container{
     width: 100%;
 }
 
-.notes__container {
+.notes-container {
     width: 100%;
     justify-content: flex-start;
 }
 
-.note__editor{
+.note-editor{
     width: 50%;
     margin: 2rem auto 2rem;
-}
-
-.note__header {
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-color);
     border-radius: 8px;
-}
-
-.border-bottom-0{
-    border-bottom: 0;
-    border-radius: 8px 8px 0 0;
 }
 
 /* || Overriding react-quill properties */
@@ -30,18 +22,20 @@
 }
 
 .ql-editor {
-    padding-top:2px !important ;
+    min-height: 5rem;
+    padding-top: 0;
 }
 
 .ql-toolbar.ql-snow  {
-    position: absolute;
-    bottom: 0;
-    z-index: 2;
-    width: 100%;
-    border-radius:  0 0 8px 8px
+    border: 0;
+    width: max-content;
 }
 
 .ql-toolbar.ql-snow + .ql-container.ql-snow {
     padding-bottom: 4rem;
     border-radius: 0 0 8px 8px;
+}
+
+.ql-container.ql-snow {
+    border: 0;
 }

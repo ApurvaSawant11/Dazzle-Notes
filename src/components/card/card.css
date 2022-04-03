@@ -1,23 +1,23 @@
-.card__title {
+.card-title {
     margin: 10px 0;
 }
 
-.card__ellipsis {
+/* .card__ellipsis {
     padding-bottom: 1px;
-}
+} */
 
-.note__card {
+.note-card {
     border: 1px solid var(--border-color);
     border-radius: 8px;
     width: 50%;
     position: relative;
 }
 
-.note__card > .quill > .ql-container.ql-snow {
+.note-card > .quill > .ql-container.ql-snow {
     border: 0;
 }
 
-.dropdown__container {
+.dropdown-container {
     position: absolute;
     right: -1rem;
     top: 2.2rem;
@@ -28,41 +28,65 @@
     z-index: 10
 }
 
-.dropdown__container li {
+.dropdown-container li {
     padding: 1px 0.8rem;
     margin: 2px;
     cursor: pointer;
 }
 
-.dropdown__container li:hover {
+.dropdown-container li:hover {
     background-color: var(--light-gray);
 }
 
-.action__icons {
+.action-icons {
     cursor: pointer;
     padding: 0.5rem 0;
 }
 
+.card-badges {
+    justify-content: space-between;
+}
+
+.card-tag {
+    background-color: var(--light-gray);
+    border-radius: 8px;
+}
+
+.card-priority {
+    background-color: var(--light-yellow);
+    border-radius: 8px;
+}
+
+.card-footer {
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+
+.card-date {
+    color: var(--dark-gray);
+}
+
 /* || ArchiveCard HomeCard */
 
-.pin__icon {
+.pin-icon {
     padding: 7px 6px 0;
 }
 
-.more__icon {
+.more-icon {
     padding: 3px 5px 0;
 }
 
 /* || TrashCard */
 
-.restore__icon {
+.restore-icon {
     padding: 3px 5px 0;
 }
 
-.trash__icon {
+.trash-icon {
     padding: 3px 8px;
 }
 
-.pin__icon:hover, .more__icon:hover, .restore__icon:hover, .trash__icon:hover {
+.pin-icon:hover, .more-icon:hover, .restore-icon:hover, .trash-icon:hover {
     background-color: var(--light-gray);
 }

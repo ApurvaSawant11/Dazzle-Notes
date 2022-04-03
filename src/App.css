@@ -8,6 +8,7 @@
     --secondary: #feb000;
     --tertiary: #cf7500;
     --light-blue:#c7eafa70;
+    --light-yellow:#f4f09c;
     --overlay:rgba(77, 77, 77, 0.71);
     --border-color: #ccc;
 }
@@ -19,6 +20,7 @@
 .flex-container {
     display: flex;
     gap: 1rem;
+    padding-top: 5rem;
 }
 
 .icon {

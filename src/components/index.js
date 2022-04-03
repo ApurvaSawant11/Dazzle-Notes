@@ -5,3 +5,6 @@ export { HomeCard } from "./card/HomeCard";
 export { ArchiveCard } from "./card/ArchiveCard";
 export { TrashCard } from "./card/TrashCard";
 export { EditModal } from "./editModal/EditModal";
+export { ColorPalette } from "./colorPalette/ColorPalette";
+export { DropDown } from "./dropDown/DropDown";
+export { SearchBar } from "./searchBar/SearchBar";

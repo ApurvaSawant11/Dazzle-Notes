@@ -43,15 +43,24 @@ const updatePin = async (user, note) => {
   });
 };
 
+// Update Note Color
+
+const updateColor = async (user, note, color) => {
+  await updateDoc(doc(db, "users", `${user.uid}`, "savedNotes", note.id), {
+    noteColor: color,
+  });
+};
+
 // Update Note
 
 const updateNote = async (user, noteType, note) => {
-  const { title, content, noteColor, isPinned, tags } = note;
+  const { title, content, noteColor, isPinned, priority, tags } = note;
   await updateDoc(doc(db, "users", `${user.uid}`, `${noteType}`, note.id), {
     title,
     content,
     noteColor,
     isPinned,
+    priority,
     tags,
   });
 };
@@ -65,4 +74,5 @@ export {
   deleteFromTrash,
   updatePin,
   updateNote,
+  updateColor,
 };
