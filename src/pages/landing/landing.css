@@ -3,16 +3,17 @@
     height: 100%;
     object-fit: cover;
     object-position: 100% 0;
+    padding-top: 4.4rem;
 }
 
 .landing-container {
-    height: 90vh;
+    height: 100vh;
     position: relative;
 }
 
 .intro{
     position: absolute;
-    top: 25%;
+    top: 30%;
     margin-left: 4rem;
 }
 

@@ -1,5 +1,7 @@
 #sidebar .pro-sidebar {
     height: 90vh;
+    position: sticky;
+    top: 4.4rem;
 }
 #sidebar .pro-sidebar.collapsed {
     width: 80px;
