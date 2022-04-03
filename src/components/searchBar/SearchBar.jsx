@@ -36,33 +36,13 @@ const SearchBar = () => {
     }
   };
 
-  const sortDateHandler = (sortType) => {
-    dispatch({
-      type: "SORT_BY_DATE",
-      payload: sortType,
-    });
-    dispatch({
-      type: "CLEAR_SORT_PRIORITY",
-    });
-  };
-
-  const sortPriorityHandler = (sortType) => {
-    dispatch({
-      type: "SORT_BY_PRIORITY",
-      payload: sortType,
-    });
-    dispatch({
-      type: "CLEAR_SORT_DATE",
-    });
-  };
-
-  const [user, showText] = useState(false);
+  const [showFilters, setShowFilters] = useState(false);
   const clickOutside = (e) => {
     if (node.current.contains(e.target)) {
       return;
     }
     setDropDown(false);
-    showText(false);
+    setShowFilters(false);
   };
 
   useEffect(() => {
@@ -70,10 +50,10 @@ const SearchBar = () => {
     return () => {
       document.removeEventListener("mousedown", clickOutside);
     };
-  }, [user]);
+  }, [showFilters]);
 
   return (
-    <div ref={node} onClick={() => showText(!user)}>
+    <div ref={node} onClick={() => setShowFilters(!showFilters)}>
       <div className="flex-row-center search-container ml-2">
         <input type="search" className="search-input basic-bg" />
         <SearchIcon className="search-icon" />
@@ -112,7 +92,12 @@ const SearchBar = () => {
                     name="radio-sort"
                     className="radio-field"
                     checked={sortByPriority === sortType}
-                    onChange={() => sortPriorityHandler(sortType)}
+                    onChange={() =>
+                      dispatch({
+                        type: "SORT_BY_PRIORITY",
+                        payload: sortType,
+                      })
+                    }
                   />{" "}
                   {sortText}
                 </label>
@@ -128,7 +113,12 @@ const SearchBar = () => {
                     name="radio-date"
                     className="radio-field"
                     checked={sortByDate === sortType}
-                    onChange={() => sortDateHandler(sortType)}
+                    onChange={() =>
+                      dispatch({
+                        type: "SORT_BY_DATE",
+                        payload: sortType,
+                      })
+                    }
                   />{" "}
                   {sortText}
                 </label>

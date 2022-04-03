@@ -55,18 +55,6 @@ const dataReducer = (state, action) => {
         filterTags: action.payload,
       };
 
-    case "CLEAR_SORT_DATE":
-      return {
-        ...state,
-        sortByDate: "",
-      };
-
-    case "CLEAR_SORT_PRIORITY":
-      return {
-        ...state,
-        sortByPriority: "",
-      };
-
     case "CLEAR_ALL_FILTERS":
       return {
         ...state,

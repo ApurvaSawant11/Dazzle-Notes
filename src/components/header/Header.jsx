@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { logo, ProfileIcon, HamburgerIcon } from "../../assets";
 import { useAuth } from "../../context";
 import { SearchBar } from "../searchBar/SearchBar";
-
 const Header = ({ barCollapse, setBarCollapse }) => {
   const collapseHandler = () => {
     barCollapse ? setBarCollapse(false) : setBarCollapse(true);
@@ -30,7 +29,7 @@ const Header = ({ barCollapse, setBarCollapse }) => {
           <span>DAZZLE </span>
           <span className="pl-0p5">NOTES </span>
         </Link>
-        <SearchBar />
+        {user && <SearchBar />}
       </div>
       <div>
         {user ? (
