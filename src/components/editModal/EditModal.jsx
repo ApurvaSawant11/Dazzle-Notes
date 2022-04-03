@@ -46,17 +46,17 @@ const EditModal = ({ openModal, note, user, noteType }) => {
     });
   };
   return (
-    <div className="modal__container flex-column-center">
+    <div className="modal-container flex-column-center">
       {updatedNote && (
         <div
-          className="note__editor"
+          className="note-editor"
           style={{ backgroundColor: updatedNote.noteColor }}
         >
-          <div className="note__header flex-row-center">
-            <div className="title__container">
+          <div className="note-header flex-row-center">
+            <div className="title-container">
               <input
                 type="text"
-                className="note__title"
+                className="note-title"
                 placeholder="Title"
                 value={updatedNote.title}
                 onChange={(e) =>
@@ -79,14 +79,14 @@ const EditModal = ({ openModal, note, user, noteType }) => {
             ></span>
 
             <span
-              className="primary-text note__add pr-1"
+              className="primary-text note-add pr-1"
               onClick={updateHandler}
             >
               UPDATE
             </span>
 
             <i
-              className="fas fa-times pr-1 note__close"
+              className="fas fa-times pr-1 note-close"
               onClick={() => openModal({ state: false })}
             ></i>
           </div>

@@ -1,28 +1,18 @@
-.home__container{
+.home-container{
     width: 100%;
 }
 
-.notes__container {
+.notes-container {
     width: 100%;
     justify-content: flex-start;
 }
 
-.note__editor{
+.note-editor{
     width: 50%;
     margin: 2rem auto 2rem;
     border: 1px solid var(--border-color);
     border-radius: 8px;
 }
-
-/* .note__header {
-    border: 1px solid #ccc;
-    border-radius: 8px;
-} */
-
-/* .border-bottom-0{
-    border-bottom: 0;
-    border-radius: 8px 8px 0 0;
-} */
 
 /* || Overriding react-quill properties */
 

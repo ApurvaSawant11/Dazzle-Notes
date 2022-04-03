@@ -31,47 +31,42 @@ const Sidebar = ({ barCollapse }) => {
     }
   };
   return (
-    <>
-      <div id="header">
-        <ProSidebar collapsed={barCollapse}>
-          <SidebarContent>
-            <Menu iconShape="square">
-              <MenuItem
-                active={path === "/" ? true : false}
-                icon={<BiHomeAlt />}
-              >
-                <Link to="/">Home</Link>
-              </MenuItem>
-              <MenuItem
-                active={path === "/tags" ? true : false}
-                icon={<MdLabelOutline />}
-              >
-                <Link to="/">Edit Tags</Link>
-              </MenuItem>
-              <MenuItem
-                active={path === "/archive" ? true : false}
-                icon={<BiArchiveIn />}
-              >
-                <Link to="/archive">Archive</Link>
-              </MenuItem>
-              <MenuItem
-                active={path === "/trash" ? true : false}
-                icon={<BiTrash />}
-              >
-                <Link to="/trash">Trash</Link>
-              </MenuItem>
-            </Menu>
-          </SidebarContent>
-          <SidebarFooter>
-            <Menu iconShape="square">
-              <MenuItem icon={<MdLogout />} onClick={logoutHandler}>
-                Logout
-              </MenuItem>
-            </Menu>
-          </SidebarFooter>
-        </ProSidebar>
-      </div>
-    </>
+    <div id="sidebar">
+      <ProSidebar collapsed={barCollapse}>
+        <SidebarContent>
+          <Menu iconShape="square">
+            <MenuItem active={path === "/" ? true : false} icon={<BiHomeAlt />}>
+              <Link to="/">Home</Link>
+            </MenuItem>
+            <MenuItem
+              active={path === "/tags" ? true : false}
+              icon={<MdLabelOutline />}
+            >
+              <Link to="/">Edit Tags</Link>
+            </MenuItem>
+            <MenuItem
+              active={path === "/archive" ? true : false}
+              icon={<BiArchiveIn />}
+            >
+              <Link to="/archive">Archive</Link>
+            </MenuItem>
+            <MenuItem
+              active={path === "/trash" ? true : false}
+              icon={<BiTrash />}
+            >
+              <Link to="/trash">Trash</Link>
+            </MenuItem>
+          </Menu>
+        </SidebarContent>
+        <SidebarFooter>
+          <Menu iconShape="square">
+            <MenuItem icon={<MdLogout />} onClick={logoutHandler}>
+              Logout
+            </MenuItem>
+          </Menu>
+        </SidebarFooter>
+      </ProSidebar>
+    </div>
   );
 };
 

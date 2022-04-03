@@ -18,14 +18,14 @@ const Trash = () => {
   };
 
   return (
-    <div className="flex-column-center notes__container mt-2p5">
+    <div className="flex-column-center notes-container mt-2p5">
       <i>
         Notes in Trash will be deleted after 30 days.{" "}
         <span className="button inverted-primary" onClick={emptyTrashHandler}>
           Empty Trash
         </span>
       </i>
-      <div className="flex-column-center notes__container mt-2p5">
+      <div className="flex-column-center notes-container mt-2p5">
         {trashedNotes.map((note) => {
           return <TrashCard key={note.id} note={note} user={user} />;
         })}

@@ -1,4 +1,4 @@
-.edit__modal {
+.edit-modal {
     width: 37%;
     min-width: 25rem;
     max-width: 35rem;
@@ -6,7 +6,7 @@
     border-radius: 8px;
 }
 
-.modal__container{
+.modal-container{
     position: fixed;
     top: 0;
     right: 0;
@@ -16,7 +16,7 @@
     z-index: 4000;  
 }
 
-.edit__modal > .quill{
+.edit-modal > .quill{
     height: 3in !important;
 }
 

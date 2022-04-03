@@ -33,7 +33,7 @@ const DropDown = ({ list, note, setNote, setDropdown }) => {
 
   return (
     <div
-      className="dropdown__container flex-column p-1 pt-0p5"
+      className="dropdown-container flex-column p-1 pt-0p5"
       ref={node}
       onClick={() => showText(!user)}
     >

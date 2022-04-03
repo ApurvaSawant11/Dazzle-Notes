@@ -13,7 +13,7 @@ const Home = () => {
   const sortedData = sortData([...filteredData], sortByPriority, sortByDate);
 
   return (
-    <div className="home__container">
+    <div className="home-container">
       <NewNoteInput user={user} tagsList={tagsList} />
 
       <div className="flex-column-center">

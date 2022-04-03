@@ -33,25 +33,25 @@ const ArchiveCard = ({ note, user }) => {
   return (
     <>
       <div
-        className="note__card mb-1"
+        className="note-card mb-1"
         style={{ backgroundColor: noteColor }}
         onMouseEnter={() => setShow(true)}
         onMouseLeave={() => setShow(false)}
       >
         <div className="flex-row-center">
-          <h6 className="card__title title__container pl-1">{title}</h6>
+          <h6 className="card-title title-container pl-1">{title}</h6>
 
           {show && (
             <span
               onClick={() => setDropdown((prev) => !prev)}
-              className="mr-0p5 icon more__icon"
+              className="mr-0p5 icon more-icon"
             >
               <MoreIcon size="1.6rem" />
             </span>
           )}
         </div>
         {dropdown && (
-          <div className="dropdown__container">
+          <div className="dropdown-container">
             <li onClick={unarchiveHandler}>Unarchive note</li>
             <li onClick={editHandler}>Edit note</li>
             <li>Add tag</li>

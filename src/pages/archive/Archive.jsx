@@ -7,7 +7,7 @@ const Archive = () => {
   const { archivedNotes } = useData();
 
   return (
-    <div className="flex-column-center notes__container mt-2p5">
+    <div className="flex-column-center notes-container mt-2p5">
       {archivedNotes.map((note) => {
         return <ArchiveCard key={note.id} note={note} user={user} />;
       })}

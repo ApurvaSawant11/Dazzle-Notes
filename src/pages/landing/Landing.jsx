@@ -15,9 +15,9 @@ const Landing = () => {
 
   return (
     <>
-      <div className="landing__container">
+      <div className="landing-container">
         <img
-          className="landing__image"
+          className="landing-image"
           src={landingImage}
           alt="coffee-and-keyboard"
         />

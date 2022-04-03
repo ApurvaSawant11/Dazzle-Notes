@@ -64,18 +64,18 @@ const NewNoteInput = ({ user, tagsList }) => {
   };
 
   return (
-    <div className="home__container">
-      <div className="note__editor" style={{ backgroundColor: note.noteColor }}>
-        <div className="note__header flex-row-center">
+    <div className="home-container">
+      <div className="note-editor" style={{ backgroundColor: note.noteColor }}>
+        <div className="note-header flex-row-center">
           <div
-            className="title__container"
+            className="title-container"
             onClick={() => {
               setShowEditor(true);
             }}
           >
             <input
               type="text"
-              className="note__title"
+              className="note-title"
               placeholder="Title"
               value={note.title}
               onChange={(e) =>
@@ -97,12 +97,12 @@ const NewNoteInput = ({ user, tagsList }) => {
           {showEditor && (
             <>
               <span
-                className="primary-text note__add pr-1"
+                className="primary-text note-add pr-1"
                 onClick={addNoteHandler}
               >
                 ADD
               </span>
-              <span className="editor__close__icon">
+              <span className="editor-close-icon">
                 <CloseIcon
                   size="1.5rem"
                   onClick={() => {
