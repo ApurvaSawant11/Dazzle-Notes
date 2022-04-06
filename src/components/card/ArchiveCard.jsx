@@ -54,7 +54,6 @@ const ArchiveCard = ({ note, user }) => {
           <div className="dropdown-container">
             <li onClick={unarchiveHandler}>Unarchive note</li>
             <li onClick={editHandler}>Edit note</li>
-            <li>Add tag</li>
             <li onClick={deleteHandler}>Delete note</li>
           </div>
         )}

@@ -12,6 +12,7 @@
     margin: 2rem auto 2rem;
     border: 1px solid var(--border-color);
     border-radius: 8px;
+    color: var(--light-black);
 }
 
 /* || Overriding react-quill properties */
@@ -19,6 +20,7 @@
 .quill {
     position: relative;
     height: max-content !important;
+    color: var(--light-black);
 }
 
 .ql-editor {
@@ -38,4 +40,30 @@
 
 .ql-container.ql-snow {
     border: 0;
+}
+
+/* || Media Queries */
+
+@media screen and (max-width: 1124px) {
+    .note-editor {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 920px) {
+    .note-editor {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .note-editor {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .note-editor {
+        width: 95%;
+    }
 }

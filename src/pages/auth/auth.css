@@ -12,7 +12,7 @@
 .login-form,
 .signup-form {
     width: 25rem;
-    background-color: var(--white-color);
+    background-color: var(--theme-bg);
     border-radius: 8px;
     position: absolute;
     margin-left: 15%;

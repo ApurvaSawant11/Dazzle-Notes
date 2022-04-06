@@ -1,16 +1,14 @@
 .card-title {
     margin: 10px 0;
+    color: var(--light-black);
 }
-
-/* .card__ellipsis {
-    padding-bottom: 1px;
-} */
 
 .note-card {
     border: 1px solid var(--border-color);
     border-radius: 8px;
     width: 50%;
     position: relative;
+    color: var(--light-black);
 }
 
 .note-card > .quill > .ql-container.ql-snow {
@@ -44,6 +42,7 @@
 }
 
 .card-badges {
+    color: var(--light-black);
     justify-content: space-between;
 }
 
@@ -89,4 +88,30 @@
 
 .pin-icon:hover, .more-icon:hover, .restore-icon:hover, .trash-icon:hover {
     background-color: var(--light-gray);
+}
+
+/* || Media queries */
+
+@media screen and (max-width: 1124px) {
+    .note-card {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 920px) {
+    .note-card {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .note-card {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .note-card {
+        width: 95%;
+    }
 }

@@ -1,24 +1,52 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./header.css";
 import { Link } from "react-router-dom";
-import { logo, ProfileIcon, HamburgerIcon } from "../../assets";
-import { useAuth } from "../../context";
+import {
+  logo,
+  ProfileIcon,
+  HamburgerIcon,
+  SunIcon,
+  MoonIcon,
+  GithubIcon,
+} from "../../assets";
+import { useAuth, useTheme } from "../../context";
 import { SearchBar } from "../searchBar/SearchBar";
+import { useWindowSize } from "../../hooks";
+
 const Header = ({ barCollapse, setBarCollapse }) => {
+  const { user } = useAuth();
+  const { width } = useWindowSize();
+  const { changeTheme, theme } = useTheme();
+
+  useEffect(() => {
+    if (width < 1024 && width > 620) {
+      setBarCollapse({ collapse: true, showSidebar: true });
+    } else if (width < 620) {
+      setBarCollapse({ collapse: false, showSidebar: false });
+    } else {
+      setBarCollapse({ collapse: false, showSidebar: true });
+    }
+  }, [width]);
+
   const collapseHandler = () => {
-    barCollapse ? setBarCollapse(false) : setBarCollapse(true);
+    if (width < 620) {
+      setBarCollapse({
+        collapse: false,
+        showSidebar: !barCollapse.showSidebar,
+      });
+    } else {
+      setBarCollapse({ collapse: !barCollapse.collapse, showSidebar: true });
+    }
   };
 
-  const { user } = useAuth();
-
   return (
-    <header className="flex-row p-0p5">
+    <header className="flex-row p-0p5 border-bottom-1">
       <div className="flex-row-center">
         {user && (
           <HamburgerIcon
             size={25}
             onClick={collapseHandler}
-            className="hamburger-icon"
+            className="hamburger-icon icon"
           />
         )}
         <Link
@@ -29,12 +57,18 @@ const Header = ({ barCollapse, setBarCollapse }) => {
           <span>DAZZLE </span>
           <span className="pl-0p5">NOTES </span>
         </Link>
-        {user && <SearchBar />}
       </div>
-      <div>
+      <div className="flex-row-center">
+        {user && <SearchBar />}
         {user ? (
           <div>
-            <ProfileIcon size={35} className="mr-1" />
+            <a
+              href="https://github.com/ApurvaSawant11"
+              classname="icon"
+              target="_blank"
+            >
+              <GithubIcon size={32} className="mr-1 github-icon" />
+            </a>
           </div>
         ) : (
           <div>
@@ -49,6 +83,13 @@ const Header = ({ barCollapse, setBarCollapse }) => {
             </Link>
           </div>
         )}
+        <div onClick={changeTheme}>
+          {theme === "night" ? (
+            <SunIcon size="2rem" className="icon" />
+          ) : (
+            <MoonIcon size="2rem" className="icon" />
+          )}
+        </div>
       </div>
     </header>
   );
