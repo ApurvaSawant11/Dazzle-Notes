@@ -6,6 +6,7 @@ const initialReducerData = {
   sortByDate: "",
   tagsList: [],
   filterTags: [],
+  search: "",
 };
 
 const dataReducer = (state, action) => {
@@ -55,11 +56,18 @@ const dataReducer = (state, action) => {
         filterTags: action.payload,
       };
 
+    case "SEARCH":
+      return {
+        ...state,
+        search: action.payload,
+      };
+
     case "CLEAR_ALL_FILTERS":
       return {
         ...state,
         sortByPriority: "",
         sortByDate: "",
+        search: "",
         filterTags: [],
       };
 

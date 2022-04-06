@@ -64,7 +64,7 @@ const Header = ({ barCollapse, setBarCollapse }) => {
           <div>
             <a
               href="https://github.com/ApurvaSawant11"
-              classname="icon"
+              className="icon"
               target="_blank"
             >
               <GithubIcon size={32} className="mr-1 github-icon" />

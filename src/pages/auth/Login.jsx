@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import "./auth.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/auth-context";
+import { useDocumentTitle } from "../../hooks";
 
 const Login = () => {
+  useDocumentTitle("Login");
   const { logIn } = useAuth();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({

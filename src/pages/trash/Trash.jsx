@@ -2,8 +2,10 @@ import React from "react";
 import { TrashCard } from "../../components";
 import { deleteFromTrash } from "../../services/firebaseServices";
 import { useAuth, useData } from "../../context";
+import { useDocumentTitle } from "../../hooks";
 
 const Trash = () => {
+  useDocumentTitle("Trash");
   const { user } = useAuth();
   const { trashedNotes } = useData();
 

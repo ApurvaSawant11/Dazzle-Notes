@@ -74,6 +74,7 @@ const DataProvider = ({ children }) => {
     sortByPriority: state.sortByPriority,
     sortByDate: state.sortByDate,
     filterTags: state.filterTags,
+    search: state.search,
     dispatch,
   };
 
