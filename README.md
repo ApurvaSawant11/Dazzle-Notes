@@ -44,6 +44,7 @@
   - Sort by creation date
   - Sort by Priority
 - Create Folders and Add notes to the folders
+- Dark mode
 
 ---
 ## Mini Demo
