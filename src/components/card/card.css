@@ -66,30 +66,6 @@
     color: var(--dark-gray);
 }
 
-/* || ArchiveCard HomeCard */
-
-.pin-icon {
-    padding: 7px 6px 0;
-}
-
-.more-icon {
-    padding: 3px 5px 0;
-}
-
-/* || TrashCard */
-
-.restore-icon {
-    padding: 3px 5px 0;
-}
-
-.trash-icon {
-    padding: 3px 8px;
-}
-
-.pin-icon:hover, .more-icon:hover, .restore-icon:hover, .trash-icon:hover {
-    background-color: var(--light-gray);
-}
-
 /* || Media queries */
 
 @media screen and (max-width: 1124px) {

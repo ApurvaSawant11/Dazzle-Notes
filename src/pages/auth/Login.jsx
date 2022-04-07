@@ -65,12 +65,7 @@ const Login = () => {
         </div>
         <div className="authbox-container flex-row gap-1 mt-0p5">
           <label htmlFor="auth-checkbox">
-            <input
-              id="auth-checkbox"
-              name="rememberMe"
-              type="checkbox"
-              checked
-            />{" "}
+            <input id="auth-checkbox" name="rememberMe" type="checkbox" />{" "}
             Remember me
           </label>
           <Link

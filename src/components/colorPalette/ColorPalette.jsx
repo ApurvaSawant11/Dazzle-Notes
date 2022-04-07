@@ -14,12 +14,12 @@ const paletteColors = [
   "#aad5cb",
 ];
 
-const ColorPalette = ({ user, note, setNote, requestFrom }) => {
+const ColorPalette = ({ user, note, setNote, requestFrom, folder }) => {
   const [show, setShow] = useState(false);
 
   const colorChangeHandler = (color) => {
     if (requestFrom === "card") {
-      updateColor(user, note, color);
+      updateColor(user, note, color, folder);
     } else {
       setShow(!show);
       setNote({ ...note, noteColor: color });

@@ -1,0 +1,29 @@
+.folder-input {
+    border: unset;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    outline: unset;
+    width: 20rem;
+    padding: 0.5rem 1rem;
+}
+
+.notes-container .button {
+    padding: 0.4rem 1rem;
+}
+
+.folder-input-container {
+    width: 100%;
+    height: 6rem;
+}
+
+.folder-container {
+    width: 23rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    margin: 0.5rem;
+    padding: 1rem 1.5rem;
+    justify-content: space-between;
+    font-size: 1.1rem;
+    color: var(--theme-text-color);
+    text-decoration: none;
+}

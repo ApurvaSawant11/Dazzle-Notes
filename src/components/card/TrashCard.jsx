@@ -2,22 +2,19 @@ import React, { useState } from "react";
 import "./card.css";
 import ReactQuill from "react-quill";
 import { RestoreIcon, TrashIcon } from "../../assets";
-import {
-  addToSavedNotes,
-  deleteFromTrash,
-} from "../../services/firebaseServices";
+import { addNote, deleteNote } from "../../services/firebaseServices";
 
 const TrashCard = ({ note, user }) => {
   const { title, content, noteColor } = note;
   const [show, setShow] = useState(false);
 
   const deleteHandler = () => {
-    deleteFromTrash(user, note);
+    deleteNote(user, note, "trashedNotes");
   };
 
   const restoreHandler = () => {
-    deleteFromTrash(user, note);
-    addToSavedNotes(user, note);
+    deleteNote(user, note, "trashedNotes");
+    addNote(user, note, "savedNotes");
   };
 
   return (
@@ -31,12 +28,12 @@ const TrashCard = ({ note, user }) => {
         <div className="flex-row-center">
           <h6 className="card-title title-container pl-1">{title}</h6>
           {show && (
-            <span className="icon restore-icon">
-              <RestoreIcon size="1.5rem" onClick={restoreHandler} />
+            <span className="icon mr-0p5">
+              <RestoreIcon size="1.4rem" onClick={restoreHandler} />
             </span>
           )}
           {show && (
-            <span className="icon trash-icon mr-0p5">
+            <span className="icon mr-1">
               <TrashIcon onClick={deleteHandler} />
             </span>
           )}

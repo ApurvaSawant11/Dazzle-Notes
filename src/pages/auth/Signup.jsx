@@ -1,13 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./auth.css";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/auth-context";
+import { useAuth } from "../../context";
 import { useDocumentTitle } from "../../hooks";
+import { db } from "../../config/firebase-config";
+import { doc, setDoc } from "firebase/firestore";
 
 export const Signup = () => {
   useDocumentTitle("Signup");
-  const { signUp } = useAuth();
+  const { user, signUp } = useAuth();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user) {
+      setDoc(doc(db, "users", `${user.uid}`, `sharedLists`, "folders"), {
+        foldersList: ["Notes", "Blogs"],
+      });
+      setDoc(doc(db, "users", `${user.uid}`, `sharedLists`, "tags"), {
+        tagsList: ["Work", "Study", "Health", "Exercise"],
+      });
+      navigate("/");
+    }
+  }, [user]);
 
   const defaultFormValue = {
     email: "",
@@ -24,7 +38,6 @@ export const Signup = () => {
     if (password === confirmPwd) {
       try {
         await signUp(email, password);
-        navigate("/");
       } catch (error) {
         console.error(error);
       }

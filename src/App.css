@@ -34,6 +34,7 @@
 .App {
     background: var(--theme-bg);
     color: var(--theme-text-color);
+    min-height: 100vh;
 }
   
 

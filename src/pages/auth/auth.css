@@ -24,6 +24,7 @@
 
 .input {
     background: transparent;
+    color: var(--theme-text-color)
 }
 
 .form-btn {

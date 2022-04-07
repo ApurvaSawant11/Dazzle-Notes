@@ -42,10 +42,10 @@ const Sidebar = ({ barCollapse }) => {
               <Link to="/">Home</Link>
             </MenuItem>
             <MenuItem
-              active={path === "/tags" ? true : false}
+              active={path === "/organizer" ? true : false}
               icon={<MdLabelOutline />}
             >
-              <Link to="/">Edit Tags</Link>
+              <Link to="/organizer">Organizer</Link>
             </MenuItem>
             <MenuItem
               active={path === "/archive" ? true : false}
