@@ -2,7 +2,13 @@ import React, { useState } from "react";
 import "./card.css";
 import ReactQuill from "react-quill";
 import { ColorPalette, NoteModal } from "../../components";
-import { PinFillIcon, PinIcon, MoreIcon, ArchiveIcon } from "../../assets";
+import {
+  PinFillIcon,
+  PinIcon,
+  ArchiveIcon,
+  EditIcon,
+  DeleteIcon,
+} from "../../assets";
 import {
   updatePin,
   addNote,
@@ -16,21 +22,14 @@ const NoteCard = ({ note, user }) => {
   const { title, content, noteColor, isPinned, priority, tags, createdAt } =
     note;
   const [show, setShow] = useState(false);
-  const [dropdown, setDropdown] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const editHandler = () => {
-    setDropdown(false);
-    setShowModal(true);
-  };
 
   const deleteHandler = () => {
-    setDropdown(false);
     deleteNote(user, note, folderName);
     addNote(user, note, "trashedNotes");
   };
 
   const archiveHandler = () => {
-    setDropdown(false);
     deleteNote(user, note, folderName);
     addNote(user, note, "archivedNotes");
   };
@@ -46,7 +45,7 @@ const NoteCard = ({ note, user }) => {
         <div className="flex-row-center">
           <h6 className="card-title title-container pl-1">{title}</h6>
           {show && (
-            <span className="icon pin-icon">
+            <span className="icon mr-0p5 mt-0p5">
               {isPinned ? (
                 <PinFillIcon
                   size="1.2rem"
@@ -62,20 +61,13 @@ const NoteCard = ({ note, user }) => {
           )}
 
           {show && (
-            <span
-              onClick={() => setDropdown((prev) => !prev)}
-              className="mr-0p5 icon more-icon"
-            >
-              <MoreIcon size="1.6rem" />
-            </span>
+            <EditIcon
+              onClick={() => setShowModal(true)}
+              size="1.5rem"
+              className="mr-1 icon"
+            />
           )}
         </div>
-        {dropdown && (
-          <div className="dropdown-container">
-            <li onClick={deleteHandler}>Delete note</li>
-            <li onClick={editHandler}>Edit note</li>
-          </div>
-        )}
 
         <ReactQuill
           modules={{ toolbar: null }}
@@ -97,14 +89,23 @@ const NoteCard = ({ note, user }) => {
 
         <div className="card-footer flex-row p-1 pt-0p5">
           <span className="text-xs card-date">Created on: {createdAt}</span>
-          <div>
+          <div className="flex-row-center">
             <ColorPalette
               user={user}
               note={note}
               requestFrom="card"
               folder={folderName}
             />
-            <ArchiveIcon className="ml-1 icon" onClick={archiveHandler} />
+            <ArchiveIcon
+              className="ml-1 icon"
+              size="1.2rem"
+              onClick={archiveHandler}
+            />
+            <DeleteIcon
+              className="ml-1 icon"
+              size="1.2rem"
+              onClick={deleteHandler}
+            />
           </div>
         </div>
       </div>

@@ -96,7 +96,7 @@ const SearchBar = () => {
       </div>
 
       {dropDown && (
-        <div className="basic-modal show">
+        <div className="filter-container">
           <div className="modal border-1">
             <div className="p-1 pb-0 fw-700">Filter by Tags</div>
             <div className="flex-column wrap p-1">

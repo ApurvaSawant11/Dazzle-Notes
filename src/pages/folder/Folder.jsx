@@ -46,9 +46,19 @@ const Folder = () => {
           noteContent=""
         />
       )}
+      <h6>Pinned</h6>
       {notesList &&
         notesList.map((note) => {
-          return <NoteCard key={note.id} note={note} user={user} />;
+          if (note.isPinned) {
+            return <NoteCard key={note.id} note={note} user={user} />;
+          }
+        })}
+      <h6>Others</h6>
+      {notesList &&
+        notesList.map((note) => {
+          if (!note.isPinned) {
+            return <NoteCard key={note.id} note={note} user={user} />;
+          }
         })}
     </div>
   );

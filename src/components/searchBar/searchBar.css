@@ -23,9 +23,13 @@
     transform: rotate(90deg);
 }
 
-.basic-modal {
-    top:3.4rem;
-    background: transparent;
+.filter-container {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    left: 0;
+    right: 2rem;
 }
 
 .modal {
@@ -34,6 +38,10 @@
 
 .filter-footer {
     border-top: 1px solid var(--border-color);
+}
+
+.filter-footer > span{
+    cursor: pointer;
 }
 
 /* || Media Queries */

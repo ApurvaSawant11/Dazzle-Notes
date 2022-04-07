@@ -127,10 +127,13 @@ const NoteModal = ({ user, setShowModal, noteState, folderName, type }) => {
             ref={editorRef}
           />
 
-          <span className="editor-footer pr-1 flex-row">
+          <span className="editor-footer pr-1 flex-row-center">
             <EditorToolbar />
             <span>
-              <TagIcon onClick={() => setDropdown(true)} className="mr-1" />
+              <TagIcon
+                onClick={() => setDropdown(true)}
+                className="mr-1 text-md"
+              />
               {dropdown && (
                 <DropDown
                   list={tagsList}
@@ -140,7 +143,9 @@ const NoteModal = ({ user, setShowModal, noteState, folderName, type }) => {
                   setDropdown={setDropdown}
                 />
               )}
-              <ColorPalette user={user} note={note} setNote={setNote} />
+              <span className="mr-0p5 text-md">
+                <ColorPalette user={user} note={note} setNote={setNote} />
+              </span>
               <select
                 className="priority-dropdown mr-1"
                 onChange={(e) => priorityHandler(e.target.value)}

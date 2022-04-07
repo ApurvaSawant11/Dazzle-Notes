@@ -2,6 +2,7 @@
     display: inline-block;
     cursor: pointer;   
     position: relative;
+    height: 1.2rem;
 }
   
 .palette-container {

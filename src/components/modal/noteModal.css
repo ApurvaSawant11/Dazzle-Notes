@@ -33,10 +33,7 @@
     position: relative;
 }
 
-.modal-container .note-editor{
-    width: 40%;
-    margin: 2rem auto 2rem;
-}
+
 
 .note-add {
     text-transform: uppercase;
