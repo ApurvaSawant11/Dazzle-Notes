@@ -1,8 +1,10 @@
 import React from "react";
 import { useAuth, useData } from "../../context";
 import { ArchiveCard } from "../../components";
+import { useDocumentTitle } from "../../hooks";
 
 const Archive = () => {
+  useDocumentTitle("Archive");
   const { user } = useAuth();
   const { archivedNotes } = useData();
 

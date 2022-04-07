@@ -41,4 +41,14 @@ const sortData = (notesList, sortByPriority, sortByDate) => {
   return notesList;
 };
 
-export { filterByTags, sortData };
+const searchNotes = (notesList, search) => {
+  return search
+    ? notesList.filter(
+        (note) =>
+          note.title.toLowerCase().includes(search.toLowerCase()) ||
+          note.content.toLowerCase().includes(search.toLowerCase())
+      )
+    : notesList;
+};
+
+export { filterByTags, sortData, searchNotes };

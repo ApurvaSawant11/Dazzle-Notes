@@ -31,8 +31,11 @@ const Sidebar = ({ barCollapse }) => {
     }
   };
   return (
-    <div id="sidebar">
-      <ProSidebar collapsed={barCollapse}>
+    <div
+      id="sidebar"
+      className={`${barCollapse.showSidebar ? "" : "display-none"}`}
+    >
+      <ProSidebar collapsed={barCollapse.collapse}>
         <SidebarContent>
           <Menu iconShape="square">
             <MenuItem active={path === "/" ? true : false} icon={<BiHomeAlt />}>

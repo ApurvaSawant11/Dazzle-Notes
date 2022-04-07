@@ -1,8 +1,45 @@
 import React from "react";
+import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
+import { storage } from "../../config/firebase-config";
+import { toast } from "react-toastify";
+
+function imageHandler() {
+  const input = document.createElement("input");
+  input.setAttribute("type", "file");
+  input.setAttribute("accept", "image/*");
+  input.click();
+  input.onchange = async function () {
+    const file = input.files[0];
+
+    if (!file) return;
+    const storageRef = ref(storage, `files/${file.name}`);
+    const uploadTask = uploadBytesResumable(storageRef, file);
+
+    toast.info("Upload in progress");
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        const progress = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        );
+      },
+      (error) => console.log(error),
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          const range = this.quill.getSelection();
+          this.quill.insertEmbed(range.index + 1, "image", `${downloadURL}`);
+        });
+      }
+    );
+  }.bind(this);
+}
 
 const modules = {
   toolbar: {
     container: "#toolbar",
+    handlers: {
+      image: imageHandler,
+    },
   },
 };
 
@@ -19,6 +56,7 @@ const formats = [
   "bullet",
   "link",
   "color",
+  "image",
   "code-block",
 ];
 
@@ -46,6 +84,7 @@ const EditorToolbar = () => (
     </span>
     <span className="ql-formats">
       <button className="ql-link" />
+      <button className="ql-image" />
     </span>
     <span className="ql-formats">
       <button className="ql-code-block" />

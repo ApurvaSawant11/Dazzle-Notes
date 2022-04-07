@@ -64,7 +64,12 @@ const NewNoteInput = ({ user, tagsList }) => {
   };
 
   return (
-    <div className="note-editor" style={{ backgroundColor: note.noteColor }}>
+    <div
+      className="note-editor"
+      style={{
+        backgroundColor: note.noteColor,
+      }}
+    >
       <div className="note-header flex-row-center">
         <div
           className="title-container"

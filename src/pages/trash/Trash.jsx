@@ -2,8 +2,10 @@ import React from "react";
 import { TrashCard } from "../../components";
 import { deleteFromTrash } from "../../services/firebaseServices";
 import { useAuth, useData } from "../../context";
+import { useDocumentTitle } from "../../hooks";
 
 const Trash = () => {
+  useDocumentTitle("Trash");
   const { user } = useAuth();
   const { trashedNotes } = useData();
 
@@ -21,7 +23,7 @@ const Trash = () => {
     <div className="flex-column-center notes-container mt-2p5">
       <i>
         Notes in Trash will be deleted after 30 days.{" "}
-        <span className="button inverted-primary" onClick={emptyTrashHandler}>
+        <span className="button inverted-info" onClick={emptyTrashHandler}>
           Empty Trash
         </span>
       </i>

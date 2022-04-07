@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import "./auth.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/auth-context";
+import { useDocumentTitle } from "../../hooks";
 
-export function Signup() {
+export const Signup = () => {
+  useDocumentTitle("Signup");
   const { signUp } = useAuth();
   const navigate = useNavigate();
 
@@ -116,4 +118,4 @@ export function Signup() {
       </form>
     </section>
   );
-}
+};

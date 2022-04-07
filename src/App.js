@@ -4,13 +4,24 @@ import { Routes, Route} from "react-router-dom";
 import { Header,} from "./components";
 import { Landing, Home, Login, Signup, Archive, Trash } from "./pages";
 import { WithSidebar, WithoutSidebar, ProtectedRoute } from "./routes";
+import { useTheme } from "./context";
+import { ToastContainer } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css";
 
 
 const App = () => {
-  const [barCollapse, setBarCollapse] = useState(false);
+  const [barCollapse, setBarCollapse] = useState({collapse: false, showSidebar: true });
+  const { theme } = useTheme();
+
   return (
-    <div className="App">
+    <div className="App" data-theme={theme}>
       <Header barCollapse={barCollapse} setBarCollapse={setBarCollapse}/>
+      <ToastContainer 
+        position="top-right"
+        autoClose="7100"
+        style={{ top: "6.5em", right: "1em" }}
+        icon={false}
+      />
         <Routes>
           
           <Route element={ <WithoutSidebar />}>

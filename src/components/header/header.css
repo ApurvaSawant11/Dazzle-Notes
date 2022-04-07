@@ -1,17 +1,67 @@
 header {
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid var(--border-color);
-    position: fixed;
+    position: sticky;
+    top: 0;
     width: 100%;
-    background: var(--white-color);
+    background: var(--navbar-bg);
     z-index: 1010;
+    justify-content: space-between;
 }
 
 .header-logo{
-    color: var(--light-black);
+    color: var(--theme-text-color);
 }
 
 .hamburger-icon {
     margin-left: 1.3rem;
+}
+
+.github-icon {
+    color: var(--theme-text-color);
+}
+
+/* || Media Queries */
+
+@media screen and (max-width: 1080px) {
+    .header-logo {
+        font-size: 1.5rem;
+    }
+}
+
+@media screen and (max-width: 860px) {
+    .header-logo {
+        font-size: 1.2rem;
+    }
+
+    .header-logo img {
+        width: 2.5rem;
+        height: 3.4rem;
+        margin: 0 1rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    header .icon {
+        height: 1.5rem;
+        width: 1.5rem;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .header-logo img {
+        display: none;
+    }
+
+    .header-logo {
+        color: var(--primary);
+        padding-left: 0.7rem;
+    }
+
+    header {
+        height: 4.4rem;
+    }
+
+    .hamburger-icon {
+        margin: 0;
+    }
+
 }

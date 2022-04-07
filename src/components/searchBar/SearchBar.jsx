@@ -2,10 +2,13 @@ import React, { useState, useEffect, useRef } from "react";
 import "./searchBar.css";
 import { useData } from "../../context";
 import { SearchIcon, FilterIcon } from "../../assets";
+import { useNavigate } from "react-router-dom";
 
 const SearchBar = () => {
   const node = useRef();
   const [dropDown, setDropDown] = useState(false);
+  const [input, setInput] = useState("");
+  const navigate = useNavigate();
   const { tagsList, dispatch, filterTags, sortByPriority, sortByDate } =
     useData();
 
@@ -18,6 +21,23 @@ const SearchBar = () => {
     { sortText: "Recent first", sortType: "LATEST" },
     { sortText: "Old first", sortType: "OLD" },
   ];
+
+  const searchHandler = (e) => {
+    if (e.key === "Enter" || e.target.value === "" || e.type === "click")
+      dispatch({
+        type: "SEARCH",
+        payload: e.type === "click" ? input : e.target.value,
+      });
+    navigate("/");
+  };
+
+  useEffect(() => {
+    setInput("");
+    dispatch({
+      type: "SEARCH",
+      payload: "",
+    });
+  }, [navigate]);
 
   const changeHandler = (checked, value) => {
     if (checked) {
@@ -54,18 +74,30 @@ const SearchBar = () => {
 
   return (
     <div ref={node} onClick={() => setShowFilters(!showFilters)}>
-      <div className="flex-row-center search-container ml-2">
-        <input type="search" className="search-input basic-bg" />
-        <SearchIcon className="search-icon" />
+      <div className="flex-row-center">
+        <div className="flex-row-center search-box search-container">
+          <input
+            type="search"
+            className="search-input basic-bg"
+            onKeyDown={(e) => searchHandler(e)}
+            onChange={(e) => setInput(e.target.value)}
+          />
+          <SearchIcon
+            className="search-icon"
+            onClick={(e) => searchHandler(e)}
+          />
+        </div>
         <span
-          className="filter-icon text-lg pb-1"
+          className="filter-icon text-lg mx-1"
           onClick={() => setDropDown(!dropDown)}
         >
           <FilterIcon />
         </span>
+      </div>
 
-        {dropDown && (
-          <div className="filter-container">
+      {dropDown && (
+        <div className="basic-modal show">
+          <div className="modal border-1">
             <div className="p-1 pb-0 fw-700">Filter by Tags</div>
             <div className="flex-column wrap p-1">
               {tagsList.map((item, index) => (
@@ -130,8 +162,8 @@ const SearchBar = () => {
               </span>
             </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 };

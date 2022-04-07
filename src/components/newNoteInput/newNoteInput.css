@@ -30,6 +30,7 @@
     width: 100%;
     font-size: medium;
     font-weight: bold;
+    color: var(--light-black);
 }
 
 .note-header {
@@ -44,6 +45,7 @@
 }
 
 .editor-close-icon > svg {
+    border-radius: 50%;
     background-color: var(--white-color);
 }
 
