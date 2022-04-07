@@ -1,33 +1,29 @@
 import React, { useState } from "react";
 import "./card.css";
 import ReactQuill from "react-quill";
-import { EditModal } from "../editModal/EditModal";
 import { MoreIcon } from "../../assets";
-import {
-  addToSavedNotes,
-  addToTrash,
-  deleteFromArchive,
-} from "../../services/firebaseServices";
+import { addNote, deleteNote } from "../../services/firebaseServices";
+import { NoteModal } from "../modal/NoteModal";
 
 const ArchiveCard = ({ note, user }) => {
   const { title, content, noteColor } = note;
   const [show, setShow] = useState(false);
   const [dropdown, setDropdown] = useState(false);
-  const [openModal, setOpenModal] = useState({ state: false, note: {} });
+  const [showModal, setShowModal] = useState(false);
 
   const deleteHandler = () => {
-    deleteFromArchive(user, note);
-    addToTrash(user, note);
+    deleteNote(user, note, "archivedNotes");
+    addNote(user, note, "trashedNotes");
   };
 
   const unarchiveHandler = () => {
-    deleteFromArchive(user, note);
-    addToSavedNotes(user, note);
+    deleteNote(user, note, "archivedNotes");
+    addNote(user, note, "savedNotes");
   };
 
   const editHandler = () => {
     setDropdown(false);
-    setOpenModal({ state: true, note: note });
+    setShowModal(true);
   };
 
   return (
@@ -65,12 +61,14 @@ const ArchiveCard = ({ note, user }) => {
         />
       </div>
 
-      {openModal.state && (
-        <EditModal
-          openModal={setOpenModal}
-          note={openModal.note}
+      {showModal && (
+        <NoteModal
           user={user}
-          noteType="archivedNotes"
+          noteState={note}
+          // noteContent={note.content}
+          setShowModal={setShowModal}
+          folderName="archivedNotes"
+          type="edit"
         />
       )}
     </>

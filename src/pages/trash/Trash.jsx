@@ -1,6 +1,6 @@
 import React from "react";
 import { TrashCard } from "../../components";
-import { deleteFromTrash } from "../../services/firebaseServices";
+import { deleteNote } from "../../services/firebaseServices";
 import { useAuth, useData } from "../../context";
 import { useDocumentTitle } from "../../hooks";
 
@@ -12,7 +12,7 @@ const Trash = () => {
   const emptyTrashHandler = () => {
     trashedNotes.map((note) => {
       try {
-        deleteFromTrash(user, note);
+        deleteNote(user, note, "trashedNotes");
       } catch (error) {
         console.error("Error while deleting trash", error);
       }

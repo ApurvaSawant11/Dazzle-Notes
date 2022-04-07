@@ -2,7 +2,7 @@ import "./App.css";
 import { useState } from "react";
 import { Routes, Route} from "react-router-dom";
 import { Header,} from "./components";
-import { Landing, Home, Login, Signup, Archive, Trash } from "./pages";
+import { Landing, Home, Login, Signup, Archive, Trash, Organizer, Folder } from "./pages";
 import { WithSidebar, WithoutSidebar, ProtectedRoute } from "./routes";
 import { useTheme } from "./context";
 import { ToastContainer } from "react-toastify"
@@ -33,6 +33,8 @@ const App = () => {
           <Route element={<WithSidebar barCollapse={barCollapse} />}>
             <Route element={ <ProtectedRoute />}>
               <Route path="/" element={<Home />} />
+              <Route path="/organizer" element={ <Organizer /> } />
+              <Route path="/organizer/:folder" element={ <Folder />} />
               <Route path="/archive" element={ <Archive /> } />
               <Route path="/trash" element={ <Trash /> } />
             </Route>

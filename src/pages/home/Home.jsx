@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import "./home.css";
-import { HomeCard, NewNoteInput } from "../../components";
+import { NoteCard, NoteModal } from "../../components";
 import { useAuth, useData } from "../../context";
 import {
   filterByTags,
@@ -8,9 +8,11 @@ import {
   searchNotes,
 } from "../../utils/getFilteredData";
 import { useDocumentTitle } from "../../hooks";
+import { initialNoteState } from "../../utils/initialNoteState";
 
 const Home = () => {
   useDocumentTitle("Home");
+  const [showModal, setShowModal] = useState(false);
   const { user } = useAuth();
   const {
     savedNotes,
@@ -27,14 +29,29 @@ const Home = () => {
 
   return (
     <div className="home-container">
-      <NewNoteInput user={user} tagsList={tagsList} />
+      <div
+        className="new-note-button note-editor icon"
+        onClick={() => setShowModal(true)}
+      >
+        Add a new note...
+      </div>
+      {showModal && (
+        <NoteModal
+          user={user}
+          tagsList={tagsList}
+          setShowModal={setShowModal}
+          noteState={initialNoteState}
+          folderName="savedNotes"
+          noteContent=""
+        />
+      )}
 
       <div className="flex-column-center">
         <h6>Pinned</h6>
         {sortedNotes &&
           sortedNotes.map((note) => {
             if (note.isPinned) {
-              return <HomeCard key={note.id} note={note} user={user} />;
+              return <NoteCard key={note.id} note={note} user={user} />;
             }
           })}
 
@@ -42,7 +59,7 @@ const Home = () => {
         {sortedNotes &&
           sortedNotes.map((note) => {
             if (!note.isPinned) {
-              return <HomeCard key={note.id} note={note} user={user} />;
+              return <NoteCard key={note.id} note={note} user={user} />;
             }
           })}
       </div>

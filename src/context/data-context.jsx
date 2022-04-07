@@ -55,14 +55,22 @@ const DataProvider = ({ children }) => {
         }
       );
 
-      onSnapshot(collection(db, "users", `${user.uid}`, "tags"), (snapshot) => {
-        const list = snapshot.docs.map((doc) => doc.data());
-        if (list[0])
-          dispatch({
-            type: "INITIALIZE_TAGS_LIST",
-            payload: list[0].tagsList,
-          });
-      });
+      onSnapshot(
+        collection(db, "users", `${user.uid}`, "sharedLists"),
+        (snapshot) => {
+          const list = snapshot.docs.map((doc) => doc.data());
+          if (list[0]) {
+            dispatch({
+              type: "INITIALIZE_TAGS_LIST",
+              payload: list[1].tagsList,
+            });
+            dispatch({
+              type: "INITIALIZE_FOLDERS_LIST",
+              payload: list[0].foldersList,
+            });
+          }
+        }
+      );
     }
   }, [user]);
 
@@ -71,6 +79,7 @@ const DataProvider = ({ children }) => {
     archivedNotes: state.archivedNotes,
     trashedNotes: state.trashedNotes,
     tagsList: state.tagsList,
+    foldersList: state.foldersList,
     sortByPriority: state.sortByPriority,
     sortByDate: state.sortByDate,
     filterTags: state.filterTags,

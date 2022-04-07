@@ -1,37 +1,38 @@
 import React, { useState } from "react";
 import "./card.css";
 import ReactQuill from "react-quill";
-import { ColorPalette, EditModal } from "../../components";
+import { ColorPalette, NoteModal } from "../../components";
 import { PinFillIcon, PinIcon, MoreIcon, ArchiveIcon } from "../../assets";
 import {
-  addToArchive,
-  addToTrash,
-  deleteFromSavedNotes,
   updatePin,
+  addNote,
+  deleteNote,
 } from "../../services/firebaseServices";
+import { useParams } from "react-router-dom";
 
-const HomeCard = ({ note, user }) => {
+const NoteCard = ({ note, user }) => {
+  const { folder } = useParams();
+  const folderName = folder ? folder.split("-").join(" ") : "savedNotes";
   const { title, content, noteColor, isPinned, priority, tags, createdAt } =
     note;
   const [show, setShow] = useState(false);
   const [dropdown, setDropdown] = useState(false);
-  const [openModal, setOpenModal] = useState({ state: false, note: {} });
-
+  const [showModal, setShowModal] = useState(false);
   const editHandler = () => {
     setDropdown(false);
-    setOpenModal({ state: true, note: note });
+    setShowModal(true);
   };
 
   const deleteHandler = () => {
     setDropdown(false);
-    deleteFromSavedNotes(user, note);
-    addToTrash(user, note);
+    deleteNote(user, note, folderName);
+    addNote(user, note, "trashedNotes");
   };
 
   const archiveHandler = () => {
     setDropdown(false);
-    deleteFromSavedNotes(user, note);
-    addToArchive(user, note);
+    deleteNote(user, note, folderName);
+    addNote(user, note, "archivedNotes");
   };
 
   return (
@@ -49,10 +50,13 @@ const HomeCard = ({ note, user }) => {
               {isPinned ? (
                 <PinFillIcon
                   size="1.2rem"
-                  onClick={() => updatePin(user, note)}
+                  onClick={() => updatePin(user, note, folderName)}
                 />
               ) : (
-                <PinIcon size="1.2rem" onClick={() => updatePin(user, note)} />
+                <PinIcon
+                  size="1.2rem"
+                  onClick={() => updatePin(user, note, folderName)}
+                />
               )}
             </span>
           )}
@@ -94,21 +98,27 @@ const HomeCard = ({ note, user }) => {
         <div className="card-footer flex-row p-1 pt-0p5">
           <span className="text-xs card-date">Created on: {createdAt}</span>
           <div>
-            <ColorPalette user={user} note={note} requestFrom="card" />
+            <ColorPalette
+              user={user}
+              note={note}
+              requestFrom="card"
+              folder={folderName}
+            />
             <ArchiveIcon className="ml-1 icon" onClick={archiveHandler} />
           </div>
         </div>
       </div>
-      {openModal.state && (
-        <EditModal
-          openModal={setOpenModal}
-          note={openModal.note}
+      {showModal && (
+        <NoteModal
           user={user}
-          noteType="savedNotes"
+          noteState={note}
+          setShowModal={setShowModal}
+          folderName={folderName}
+          type="edit"
         />
       )}
     </>
   );
 };
 
-export { HomeCard };
+export { NoteCard };

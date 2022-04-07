@@ -5,6 +5,7 @@ const initialReducerData = {
   sortByPriority: "",
   sortByDate: "",
   tagsList: [],
+  foldersList: [],
   filterTags: [],
   search: "",
 };
@@ -31,6 +32,9 @@ const dataReducer = (state, action) => {
 
     case "INITIALIZE_TAGS_LIST":
       return { ...state, tagsList: [...action.payload] };
+
+    case "INITIALIZE_FOLDERS_LIST":
+      return { ...state, foldersList: [...action.payload] };
 
     case "SORT_BY_PRIORITY":
       return {

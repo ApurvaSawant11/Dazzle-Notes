@@ -5,48 +5,30 @@ import {
   doc,
   addDoc,
   collection,
+  arrayUnion,
 } from "firebase/firestore";
 
-// For Saved Notes List
-const addToSavedNotes = async (user, note) => {
-  await addDoc(collection(db, "users", `${user.uid}`, "savedNotes"), note);
+const addNote = async (user, note, folder) => {
+  await addDoc(collection(db, "users", `${user.uid}`, `${folder}`), note);
 };
 
-const deleteFromSavedNotes = async (user, note) => {
-  await deleteDoc(doc(db, "users", `${user.uid}`, "savedNotes", note.id));
-};
-
-// For Archived Notes List
-const addToArchive = async (user, note) => {
-  await addDoc(collection(db, "users", `${user.uid}`, "archivedNotes"), note);
-};
-
-const deleteFromArchive = async (user, note) => {
-  await deleteDoc(doc(db, "users", `${user.uid}`, "archivedNotes", note.id));
-};
-
-// For Trash Notes List
-const addToTrash = async (user, note) => {
-  await addDoc(collection(db, "users", `${user.uid}`, "trashedNotes"), note);
-};
-
-const deleteFromTrash = async (user, note) => {
-  await deleteDoc(doc(db, "users", `${user.uid}`, "trashedNotes", note.id));
+const deleteNote = async (user, note, folder) => {
+  await deleteDoc(doc(db, "users", `${user.uid}`, `${folder}`, note.id));
 };
 
 // Update Note Pin
 
-const updatePin = async (user, note) => {
+const updatePin = async (user, note, folder) => {
   const { isPinned } = note;
-  await updateDoc(doc(db, "users", `${user.uid}`, "savedNotes", note.id), {
+  await updateDoc(doc(db, "users", `${user.uid}`, `${folder}`, note.id), {
     isPinned: !isPinned,
   });
 };
 
 // Update Note Color
 
-const updateColor = async (user, note, color) => {
-  await updateDoc(doc(db, "users", `${user.uid}`, "savedNotes", note.id), {
+const updateColor = async (user, note, color, folder) => {
+  await updateDoc(doc(db, "users", `${user.uid}`, `${folder}`, note.id), {
     noteColor: color,
   });
 };
@@ -65,14 +47,18 @@ const updateNote = async (user, noteType, note) => {
   });
 };
 
+//  add to foldersList
+const addToFoldersList = async (user, folderName) => {
+  await updateDoc(doc(db, "users", `${user.uid}`, `sharedLists`, "folders"), {
+    foldersList: arrayUnion(folderName),
+  });
+};
+
 export {
-  addToSavedNotes,
-  deleteFromSavedNotes,
-  addToArchive,
-  deleteFromArchive,
-  addToTrash,
-  deleteFromTrash,
   updatePin,
   updateNote,
   updateColor,
+  addToFoldersList,
+  addNote,
+  deleteNote,
 };
