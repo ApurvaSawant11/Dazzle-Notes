@@ -16,19 +16,18 @@
 
 - [Introduction](#introduction)
 - [Features](#features)
+- [Mini Demo](#mini-demo)
 - [Getting Started](#getting-started)
 - [Connect](#connect)
 
-## Introduction
-
 ---
+## Introduction
 
 - Dazzle notes provides an easier way to save lists, notes and more...
 - This website uses [Firebase](https://firebase.google.com/) for backend.
 
-## Features
-
 ---
+## Features
 
 - Authentication - Login, Signup and Logout
 - Create, Edit and Delete Notes
@@ -46,9 +45,18 @@
   - Sort by Priority
 - Create Folders and Add notes to the folders
 
-## Getting Started
+---
+## Mini Demo
+
+<div align="center">
+  
+![Dazzle Notes Demo](https://media.giphy.com/media/OqnJRfaTOIJT00KhSF/giphy.gif)
+  
+</div>
 
 ---
+## Getting Started
+
 
 1. clone the repository on your local machine with the command below in your terminal, and cd into the **dazzle-notes** folder
 
